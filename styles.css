@@ -1,0 +1,47 @@
+
+* {
+  color: white;
+}
+
+.full-page {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  margin: 0;
+}
+
+.title {
+  font-size: 50px;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1000px;
+
+  background-color: #804FB3;
+}
+
+aside {
+  width: 220px;
+  background-color: #B589D6;
+}
+
+.human-player {
+  
+}
+
+.computer-player {
+  
+}
+
+.difficult {
+ 
+}
+
+.classic-and-difficult {
+  outline: 2px solid red;
+}
