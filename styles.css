@@ -1,7 +1,7 @@
 
 * {
   font-family: 'Kalam', cursive;
-
+  
 }
 
 .full-page {
@@ -35,8 +35,20 @@
 }
 
 aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 280px;
-  background: linear-gradient(#eeaeca, #94bbe9)
+  font-size: 40px;
+  background: linear-gradient(#eeaeca, #94bbe9);
+}
+
+.track-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  line-height: 2px;
 }
 
 .human-player {
@@ -51,7 +63,7 @@ aside {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 580px;
+  height: 560px;
   margin-top: -10px;
 }
 
@@ -73,20 +85,14 @@ aside {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 220px;
+  height: 210px;
   width: 440px;
   background-color: #89cff0;
-  font-size: 25px;
- 
-  
+  font-size: 25px; 
 }
 
-
 .inner-square-text {
- 
-  margin: 0px;
-  
-  
+  margin: 0px;  
 }
 
 button {
@@ -98,10 +104,10 @@ button {
   
 }
 
-.below-difficult-button {
+.below-button {
   margin-top: -20px;
 }
 
-.edge-of-difficult-square {
+.edge-of-square {
 margin-bottom: 15px;
 }
