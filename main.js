@@ -6,6 +6,9 @@ var hardButton = document.querySelector('.hard-button');
 var changeGameButton = document.querySelector('.change-game-button');
 var subtitle = document.querySelector('.subtitle');
 
+// global variables
+
+
 // event listeners
 
 classicButton.addEventListener('click', function() {
@@ -20,7 +23,16 @@ changeGameButton.addEventListener('click', function() {
  goBackToHomePage()
 });
 
+window.addEventListener('load', function() {
+  console.log(createPlayer('You', '🙂'))
+  console.log(createPlayer('Computer', '💻'))
+});
+
 // event handlers
+
+function createPlayer(personOrComputer, token) {
+  return {name: personOrComputer, token: token,  wins: 0}
+}
 
 function goToGame() {
   classicAndHardContainers.classList.add('hidden');
@@ -33,3 +45,4 @@ function goBackToHomePage() {
   changeGameButton.classList.add('hidden');
   subtitle.innerText = 'Choose your game!'
 };
+
