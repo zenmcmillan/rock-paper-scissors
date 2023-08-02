@@ -16,7 +16,7 @@ hardButton.addEventListener('click',function() {
 });
 
 changeGameButton.addEventListener('click', function() {
-
+ goBackToHomePage()
 });
 
 // event handlers
@@ -26,3 +26,7 @@ function goToGame() {
   changeGameButton.classList.remove('hidden')
 };
 
+function goBackToHomePage() {
+  classicAndHardContainers.classList.remove('hidden');
+  changeGameButton.classList.add('hidden');
+};
