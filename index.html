@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
   <title>Rock, Paper, Scissors</title>
 </head>
 <body class="full-page">
@@ -17,18 +20,20 @@
     <h2 class="subtitle">Choose your game!</h2>
     <section class="classic-and-difficult">
       <div class="classic">
-        <h3>Classic</h3>
-        <p>rock > scissors</p>
-        <p>paper > rock</p>
-        <p>scissors > paper</p>
+        <h3><button>Classic</button></h3>
+        <p class="inner-square-text below-difficult-button">rock > scissors</p>
+        <p class="inner-square-text">paper > rock</p>
+        <p class="inner-square-text edge-of-difficult-square">scissors > paper</p>
       </div>
       <div class="difficult">
-        <h4>Difficult</h4>
-        <p>rock > scissors & lizard</p>
-        <p>paper > rock & alien</p>
-        <p>scissors > paper & lizard</p>
-        <p>lizard > paper & alien</p>
-        <p> alien > scissors & rock</p>
+      
+        <h4><button>Hard</button></h4>
+        <p class="inner-square-text below-difficult-button">rock > scissors & lizard</p>
+        <p class="inner-square-text">paper > rock & alien</p>
+        <p class="inner-square-text">scissors > paper & lizard</p>
+        <p class="inner-square-text">lizard > paper & alien</p>
+        <p class="inner-square-text edge-of-difficult-square"> alien > scissors & rock</p>
+        
       </div>
     </section>
    </main>

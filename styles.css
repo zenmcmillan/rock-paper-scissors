@@ -1,6 +1,7 @@
 
 * {
-  color: white;
+  font-family: 'Kalam', cursive;
+
 }
 
 .full-page {
@@ -13,21 +14,29 @@
 }
 
 .title {
-  font-size: 50px;
+  font-size: 60px;
+  margin-top: 20px;
+}
+
+.subtitle {
+  margin-top: -40px;
+  height: 50px;
+  font-size: 30px;
+  font-weight: 100;
 }
 
 .main-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1000px;
-
-  background-color: #804FB3;
+  width: 900px;
+  background-color: #faf0e6;
+  
 }
 
 aside {
-  width: 220px;
-  background-color: #B589D6;
+  width: 280px;
+  background: linear-gradient(#eeaeca, #94bbe9)
 }
 
 .human-player {
@@ -38,10 +47,61 @@ aside {
   
 }
 
-.difficult {
- 
+.classic-and-difficult {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 580px;
+  margin-top: -10px;
 }
 
-.classic-and-difficult {
-  outline: 2px solid red;
+.difficult {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 290px;
+  width: 440px;
+  background-color: #89cff0;
+  margin-top: 30px;
+  font-size: 25px;
+
+}
+
+.classic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  width: 440px;
+  background-color: #89cff0;
+  font-size: 25px;
+ 
+  
+}
+
+
+.inner-square-text {
+ 
+  margin: 0px;
+  
+  
+}
+
+button {
+  font-size: 25px;
+  background-color: purple;
+  color: white;
+  border-radius: 6px;
+  width: 140px;
+  
+}
+
+.below-difficult-button {
+  margin-top: -20px;
+}
+
+.edge-of-difficult-square {
+margin-bottom: 15px;
 }
