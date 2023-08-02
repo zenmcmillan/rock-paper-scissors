@@ -8,6 +8,7 @@ var subtitle = document.querySelector('.subtitle');
 
 // global variables
 
+var players = []
 
 // event listeners
 
@@ -24,11 +25,18 @@ changeGameButton.addEventListener('click', function() {
 });
 
 window.addEventListener('load', function() {
-  console.log(createPlayer('You', '🙂'))
-  console.log(createPlayer('Computer', '💻'))
+  playersData() //data model
+
 });
 
 // event handlers
+
+function playersData() {
+ var you = createPlayer('You', '🙂');
+ var computer = createPlayer('Computer', '💻');
+ players.push(you, computer)
+ console.log(players)
+}
 
 function createPlayer(personOrComputer, token) {
   return {name: personOrComputer, token: token,  wins: 0}
