@@ -12,6 +12,7 @@ var computerGameInfo = document.querySelector('.computer-game-info');
 // global variables
 
 var players = {}
+var classicGameBoard = ['rock', 'paper', 'scissors']
 
 // event listeners
 
@@ -29,13 +30,12 @@ changeGameButton.addEventListener('click', function() {
 
 window.addEventListener('load', function() {
   createPlayersData() //data model
-  renderPlayerData() //DOM
-  renderComputerPlayingData() //DOM
+  renderPlayersData() //DOM
 });
 
 // event handlers
 
-function renderPlayerData() {
+function renderPlayersData() {
   
   personalGameInfo.innerHTML = '';
 
@@ -43,18 +43,14 @@ function renderPlayerData() {
   `<p class="icons">${players.player1.token}</p>
    <p class="player">${players.player1.name}</p>
    <p> Wins:<span> ${players.player1.wins}</span></p>`
-}
 
-function renderComputerPlayingData() {
-  
-  computerGameInfo.innerHTML = '';
+   computerGameInfo.innerHTML = '';
 
-  computerGameInfo.innerHTML += 
-  `<p class="icons">${players.player2.token}</p>
-  <p class="player">${players.player2.name}</p>
-  <p> Wins:<span> ${players.player2.wins}</span></p>`
-}
-
+   computerGameInfo.innerHTML += 
+   `<p class="icons">${players.player2.token}</p>
+   <p class="player">${players.player2.name}</p>
+   <p> Wins:<span> ${players.player2.wins}</span></p>`
+};
 
 function createPlayersData() {
  var player1 = createPlayer('You', '🙂');
@@ -63,9 +59,8 @@ function createPlayersData() {
  console.log(players)
 }
 
-
 function createPlayer(personOrComputer, token) {
-  return {name: personOrComputer, token: token,  wins: 1}
+  return {name: personOrComputer, token: token,  wins: 1, chosenPiece: null}
 }
 
 function goToGame() {
