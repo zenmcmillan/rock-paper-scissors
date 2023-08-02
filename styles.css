@@ -48,7 +48,7 @@ aside {
   line-height: 2px;
 }
 
-.classic-and-difficult {
+.classic-and-hard {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -83,12 +83,30 @@ aside {
   margin: 0px;  
 }
 
-button {
+.classic-button, .hard-button {
   font-size: 25px;
   background-color: purple;
   color: white;
-  border-radius: 6px;
+  border-radius: 20px;
   width: 140px;  
+  border: 0;
+ 
+}
+
+.change-game-button {
+  background-color: purple;
+  color: white;
+  font-size: 25px;
+  width: 200px;
+  border: 0;
+  border-radius: 20px;
+  margin-top: 0px;
+  cursor: pointer;  
+}
+
+.classic-button:hover, .hard-button:hover, .change-game-button:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .below-button {
@@ -97,4 +115,8 @@ button {
 
 .edge-of-square {
 margin-bottom: 15px;
+}
+
+.hidden {
+  display: none;
 }
