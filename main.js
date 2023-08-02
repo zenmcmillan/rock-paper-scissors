@@ -11,7 +11,7 @@ var computerGameInfo = document.querySelector('.computer-game-info');
 
 // global variables
 
-var players = []
+var players = {}
 
 // event listeners
 
@@ -40,9 +40,9 @@ function renderPlayerData() {
   personalGameInfo.innerHTML = '';
 
   personalGameInfo.innerHTML += 
-  `<p class="icons">${players[0].token}</p>
-   <p class="player">${players[0].name}</p>
-   <p> Wins:<span> ${players[0].wins}</span></p>`
+  `<p class="icons">${players.player1.token}</p>
+   <p class="player">${players.player1.name}</p>
+   <p> Wins:<span> ${players.player1.wins}</span></p>`
 }
 
 function renderComputerPlayingData() {
@@ -50,18 +50,19 @@ function renderComputerPlayingData() {
   computerGameInfo.innerHTML = '';
 
   computerGameInfo.innerHTML += 
-  `<p class="icons">${players[1].token}</p>
-  <p class="player">${players[1].name}</p>
-  <p> Wins:<span> ${players[1].wins}</span></p>`
+  `<p class="icons">${players.player2.token}</p>
+  <p class="player">${players.player2.name}</p>
+  <p> Wins:<span> ${players.player2.wins}</span></p>`
 }
 
 
 function createPlayersData() {
- var you = createPlayer('You', '🙂');
- var computer = createPlayer('Computer', '💻');
- players.push(you, computer)
+ var player1 = createPlayer('You', '🙂');
+ var player2 = createPlayer('Computer', '💻');
+ players = {player1, player2}
  console.log(players)
 }
+
 
 function createPlayer(personOrComputer, token) {
   return {name: personOrComputer, token: token,  wins: 1}
