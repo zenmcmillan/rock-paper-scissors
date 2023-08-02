@@ -48,7 +48,7 @@ aside {
   line-height: 2px;
 }
 
-.classic-and-difficult {
+.classic-and-hard {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -97,4 +97,8 @@ button {
 
 .edge-of-square {
 margin-bottom: 15px;
+}
+
+.hidden {
+  display: none;
 }
