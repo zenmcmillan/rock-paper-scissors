@@ -16,10 +16,12 @@ var game = {}
 
 classicButton.addEventListener('click', function() {
   goToGame();
+  computerTakingItsTurn(game, ['classicGameBoard']);
 });
 
 hardButton.addEventListener('click',function() {
   goToGame();
+  computerTakingItsTurn(game, ['hardGameBoard']);
 });
 
 changeGameButton.addEventListener('click', function() {
@@ -29,8 +31,7 @@ changeGameButton.addEventListener('click', function() {
 window.addEventListener('load', function() {
   createGame() //data model
   renderPlayerData() //DOM
-  classicFunctionality(game)
-  computerTakingItsTurn()
+ 
 });
 
 // event handlers
@@ -76,11 +77,14 @@ function classicFunctionality(game) {
   }
 }
 
-function computerTakingItsTurn() {
-  var index = Math.floor(Math.random() * game.classicGameBoard.length);
-  var piece = game.classicGameBoard[index]
-  
-  return console.log(piece)
+function computerTakingItsTurn(game, [array]) {
+ var gameChoice = game[array]
+ var piece = gameChoice[getRandomIndex(gameChoice)]
+ return console.log(piece)
+}
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length)
 }
 
 function renderPlayerData() {
