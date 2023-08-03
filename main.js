@@ -16,12 +16,15 @@ var game = {}
 
 classicButton.addEventListener('click', function() {
   goToGame();
+  createGameFunctionality(game);
   computerTakingItsTurn(game, ['classicGameBoard']);
 });
 
 hardButton.addEventListener('click',function() {
   goToGame();
+  createGameFunctionality(game);
   computerTakingItsTurn(game, ['hardGameBoard']);
+  
 });
 
 changeGameButton.addEventListener('click', function() {
@@ -36,45 +39,65 @@ window.addEventListener('load', function() {
 
 // event handlers
 
-function classicFunctionality(game) {
+function assignPlayingPieces(game) {
+ 
+}
+
+function createGameFunctionality(game) {
   var player1 = game.player1.chosenPiece
   var player2 = game.player2.chosenPiece
-  player1 = 'rock'
-  player2 = 'scissors'
   
-   if (player1 === 'rock' && player2 === 'scissors') {
+   if (player1 === 'rock' && player2 === 'scissors' || player2 === 'lizard') {
     game.player1.wins += 1
-    game.player1.winThisRound = true
+    game.player1.wonThisRound = true
    }
-   else if (player2 === 'rock' && player1 === 'scissors') {
+   else if (player2 === 'rock' && player1 === 'scissors' || player1 === 'lizard') {
      game.player2.wins += 1
-     game.player2.winThisRound = true
+     game.player2.wonThisRound = true
    }
    else if (player1 === 'rock' && player2 === 'rock') {
      game.draw = true
    }
-   else if (player1 === 'scissors' && player2 === 'paper') {
+   else if (player1 === 'scissors' && player2 === 'paper' || player2 === 'lizard') {
      game.player1.wins += 1
-     game.player1.winThisRound = true
+     game.player1.wonThisRound = true
    }
-   else if (player2 === 'scissors' && player1 === 'paper') {
+   else if (player2 === 'scissors' && player1 === 'paper' || player1 === 'lizard') {
      game.player2.wins += 1
-     game.player2.winThisRound = true
+     game.player2.wonThisRound = true
   }
   else if (player1 === 'scissors' && player2 === 'scissors') {
      game.draw = true
   }
-  else if (player1 === 'paper' && player2 === 'rock') {
+  else if (player1 === 'paper' && player2 === 'rock' || player2 === 'alien') {
      game.player1.wins += 1
-     game.player1.winThisRound = true
+     game.player1.wonThisRound = true
    }
-   else if (player2 === 'paper' && player1 === 'rock') {
+   else if (player2 === 'paper' && player1 === 'rock' || player1 === 'alien') {
      game.player2.wins += 1
-     game.player2.winThisRound = true
+     game.player2.wonThisRound = true
   }
   else if (player1 === 'paper' && player2 === 'paper') {
     game.draw = true
   }
+  else if (player1 === 'lizard' && player2 === 'paper' || player2 === 'alien') {
+    game.player1.wins += 1
+    game.player1.wonThisRound = true
+  }
+  else if (player2 === 'lizard' && player1 === 'paper' || player1 === 'alien') {
+    game.player2.wins += 1
+    game.player2.wonThisRound = true
+  }
+  else if (player1 === 'alien' && player2 === 'scissors' || player2 === 'rock') {
+    game.player2.wins += 1
+    game.player2.wonThisRound = true
+  }
+  else if (player2 === 'alien' && player1 === 'scissors' || player1 === 'rock') {
+    game.player1.wins += 1
+    game.player1.wonThisRound = true
+  }
+  console.log(game.player1);
+  console.log(game.player2);
 }
 
 function computerTakingItsTurn(game, [array]) {
@@ -113,7 +136,7 @@ function createGame() {
 }
 
 function createPlayer(personOrComputer, token) {
-  return {name: personOrComputer, token: token,  wins: 0, winThisRound: false, chosenPiece: null}
+  return {name: personOrComputer, token: token,  wins: 0, wonThisRound: false, chosenPiece: null}
 };
 
 function goToGame() {
