@@ -8,11 +8,9 @@ var subtitle = document.querySelector('.subtitle');
 var personalGameInfo = document.querySelector('.personal-game-info');
 var computerGameInfo = document.querySelector('.computer-game-info');
 
-
 // global variables
 
-var players = {}
-var classicGameBoard = ['rock', 'paper', 'scissors']
+var game = {}
 
 // event listeners
 
@@ -29,49 +27,90 @@ changeGameButton.addEventListener('click', function() {
 });
 
 window.addEventListener('load', function() {
-  createPlayersData() //data model
-  renderPlayersData() //DOM
+  createGame() //data model
+  renderPlayerData() //DOM
+  classicFunctionality(game)
 });
 
 // event handlers
 
-function renderPlayersData() {
+function classicFunctionality(game) {
+  var player1 = game.player1.chosenPiece
+  var player2 = game.player2.chosenPiece
+  //  player1 = "rock" 
+  //  player2 = "rock"
+   if (player1 === 'rock' && player2 === 'scissors') {
+   return game.player1.wins += 1
+   }
+   else if (player2 === 'rock' && player1 === 'scissors') {
+    return game.player2.wins += 1
+   }
+   else if (player1 === 'rock' && player2 === 'rock') {
+    return game.draw = true
+   }
+   else if (player1 === 'scissors' && player2 === 'paper') {
+    return game.player1.wins += 1
+   }
+   else if (player2 === 'scissors' && player1 === 'paper') {
+    return game.player2.wins += 1
+  }
+  else if (player1 === 'scissors' && player2 === 'scissors') {
+    game.draw = true
+  }
+  else if (player1 === 'paper' && player2 === 'rock') {
+    return game.player1.wins += 1
+   }
+   else if (player2 === 'paper' && player1 === 'rock') {
+    return game.player2.wins += 1
+  }
+  else if (player1 === 'paper' && player2 === 'paper') {
+    game.draw = true
+  }
+}
+
+function computerTakingItsTurn() {
+  var index = Math.floor(Math.random() * game.classicGameBoard.length);
+  return game.classicGameBoard[index]
+}
+
+function renderPlayerData() {
   
   personalGameInfo.innerHTML = '';
 
   personalGameInfo.innerHTML += 
-  `<p class="icons">${players.player1.token}</p>
-   <p class="player">${players.player1.name}</p>
-   <p> Wins:<span> ${players.player1.wins}</span></p>`
+  `<p class="icons">${game.player1.token}</p>
+   <p class="player">${game.player1.name}</p>
+   <p> Wins:<span> ${game.player1.wins}</span></p>`
 
    computerGameInfo.innerHTML = '';
 
    computerGameInfo.innerHTML += 
-   `<p class="icons">${players.player2.token}</p>
-   <p class="player">${players.player2.name}</p>
-   <p> Wins:<span> ${players.player2.wins}</span></p>`
+   `<p class="icons">${game.player2.token}</p>
+   <p class="player">${game.player2.name}</p>
+   <p> Wins:<span> ${game.player2.wins}</span></p>`
 };
 
-function createPlayersData() {
+function createGame() {
  var player1 = createPlayer('You', '🙂');
  var player2 = createPlayer('Computer', '💻');
- players = {player1, player2}
- console.log(players)
+ game = {player1, player2, classicGameBoard: ['rock', 'paper', 'scissors'], 
+  hardGameBoard: ['rock', 'paper', 'scissors', 'alien', 'lizard'], draw: false}
+ console.log(game)
 }
 
 function createPlayer(personOrComputer, token) {
-  return {name: personOrComputer, token: token,  wins: 1, chosenPiece: null}
-}
+  return {name: personOrComputer, token: token,  wins: 0, chosenPiece: null}
+};
 
 function goToGame() {
   classicAndHardContainers.classList.add('hidden');
-  changeGameButton.classList.remove('hidden')
-  subtitle.innerText = 'Choose your fighter!'
+  changeGameButton.classList.remove('hidden');
+  subtitle.innerText = 'Choose your fighter!';
 };
 
 function goBackToHomePage() {
   classicAndHardContainers.classList.remove('hidden');
   changeGameButton.classList.add('hidden');
-  subtitle.innerText = 'Choose your game!'
+  subtitle.innerText = 'Choose your game!';
 };
 
