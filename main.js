@@ -30,6 +30,7 @@ window.addEventListener('load', function() {
   createGame() //data model
   renderPlayerData() //DOM
   classicFunctionality(game)
+  computerTakingItsTurn()
 });
 
 // event handlers
@@ -37,31 +38,38 @@ window.addEventListener('load', function() {
 function classicFunctionality(game) {
   var player1 = game.player1.chosenPiece
   var player2 = game.player2.chosenPiece
-  //  player1 = "rock" 
-  //  player2 = "rock"
+  player1 = 'rock'
+  player2 = 'scissors'
+  
    if (player1 === 'rock' && player2 === 'scissors') {
-   return game.player1.wins += 1
+    game.player1.wins += 1
+    game.player1.winThisRound = true
    }
    else if (player2 === 'rock' && player1 === 'scissors') {
-    return game.player2.wins += 1
+     game.player2.wins += 1
+     game.player2.winThisRound = true
    }
    else if (player1 === 'rock' && player2 === 'rock') {
-    return game.draw = true
+     game.draw = true
    }
    else if (player1 === 'scissors' && player2 === 'paper') {
-    return game.player1.wins += 1
+     game.player1.wins += 1
+     game.player1.winThisRound = true
    }
    else if (player2 === 'scissors' && player1 === 'paper') {
-    return game.player2.wins += 1
+     game.player2.wins += 1
+     game.player2.winThisRound = true
   }
   else if (player1 === 'scissors' && player2 === 'scissors') {
-    game.draw = true
+     game.draw = true
   }
   else if (player1 === 'paper' && player2 === 'rock') {
-    return game.player1.wins += 1
+     game.player1.wins += 1
+     game.player1.winThisRound = true
    }
    else if (player2 === 'paper' && player1 === 'rock') {
-    return game.player2.wins += 1
+     game.player2.wins += 1
+     game.player2.winThisRound = true
   }
   else if (player1 === 'paper' && player2 === 'paper') {
     game.draw = true
@@ -70,7 +78,9 @@ function classicFunctionality(game) {
 
 function computerTakingItsTurn() {
   var index = Math.floor(Math.random() * game.classicGameBoard.length);
-  return game.classicGameBoard[index]
+  var piece = game.classicGameBoard[index]
+  
+  return console.log(piece)
 }
 
 function renderPlayerData() {
@@ -99,7 +109,7 @@ function createGame() {
 }
 
 function createPlayer(personOrComputer, token) {
-  return {name: personOrComputer, token: token,  wins: 0, chosenPiece: null}
+  return {name: personOrComputer, token: token,  wins: 0, winThisRound: false, chosenPiece: null}
 };
 
 function goToGame() {
