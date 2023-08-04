@@ -39,7 +39,7 @@ changeGameButton.addEventListener('click', function() {
 });
 
 allGamePiecesContainer.addEventListener('click', function(event) {
-  if(harderPiecesGameboardContainer.classList.contains('hidden')) {
+  if (harderPiecesGameboardContainer.classList.contains('hidden')) {
     playerClicksPiece(event)
     computerTakingItsTurn(game, ['classicGameBoard'])
     createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
@@ -52,22 +52,35 @@ allGamePiecesContainer.addEventListener('click', function(event) {
 
 // event handlers
 
+function updatePlayerInfo(game) {
+  if (game.player1.wonThisRound) {
+    game.player1.wins += 1
+    game.player1.wonThisRound = true 
+    game.player2.wonThisRound = false 
+  }
+  else if (game.player2.wonThisRound) {
+    game.player1.wins += 1
+    game.player1.wonThisRound = true 
+    game.player2.wonThisRound = false 
+  }
+};
+
 function playerClicksPiece(event) {
     playersClickedPiece = event.target.id
    game.player1.chosenPiece = playersClickedPiece
    return console.log("players Clicked Piece", playersClickedPiece)
-}
+};
 
 function computerTakingItsTurn(game, [array]) {
   var gameChoice = game[array]
    computersChosenPiece = gameChoice[getRandomIndex(gameChoice)]
   game.player2.chosenPiece = computersChosenPiece
   return console.log("computers Chosen Piece", game.player2.chosenPiece)
- }
+ };
  
  function getRandomIndex(array) {
    return Math.floor(Math.random() * array.length)
- }
+ };
 
 function createGameFunctionality(game, playerPiece, computerPiece) {
 
@@ -104,7 +117,6 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
      game.draw = true
      game.player1.wonThisRound = false
      game.player2.wonThisRound = false
-     game.draw = true
   }
   else if (game.player1.chosenPiece === 'paper' && game.player2.chosenPiece === 'rock' || game.player2.chosenPiece === 'alien') {
      game.player1.wins += 1
@@ -153,7 +165,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
   }
   console.log(game.player1);
   console.log(game.player2);
-}
+};
 
 function renderPlayerData() {
   
