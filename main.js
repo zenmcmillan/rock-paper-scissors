@@ -11,7 +11,6 @@ var classicGameBoardContainer = document.querySelector('.classic-gameboard-conta
 var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
 
-
 // global variables
 
 var game = {};
@@ -89,6 +88,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
      game.draw = true
      game.player1.wonThisRound = false
      game.player2.wonThisRound = false
+     game.draw = true
    }
    else if (game.player1.chosenPiece === 'scissors' && game.player2.chosenPiece === 'paper' || game.player2.chosenPiece === 'lizard') {
      game.player1.wins += 1
@@ -103,7 +103,8 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
   else if (game.player1.chosenPiece === 'scissors' && game.player2.chosenPiece === 'scissors') {
      game.draw = true
      game.player1.wonThisRound = false
-     game.player2.wonThisRound = true
+     game.player2.wonThisRound = false
+     game.draw = true
   }
   else if (game.player1.chosenPiece === 'paper' && game.player2.chosenPiece === 'rock' || game.player2.chosenPiece === 'alien') {
      game.player1.wins += 1
@@ -119,6 +120,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.draw = true
     game.player1.wonThisRound = false
     game.player2.wonThisRound = false
+    game.draw = true
   }
   else if (game.player1.chosenPiece === 'lizard' && game.player2.chosenPiece === 'paper' || game.player2.chosenPiece === 'alien') {
     game.player1.wins += 1
@@ -130,6 +132,11 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
   }
+  else if (game.player1.chosenPiece === 'lizard' && game.player2.chosenPiece === 'lizard') {
+    game.player1.wonThisRound = false
+    game.player2.wonThisRound = false
+    game.draw = true
+  }
   else if (game.player1.chosenPiece === 'alien' && game.player2.chosenPiece === 'scissors' || game.player2.chosenPiece === 'rock') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
@@ -139,6 +146,10 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player1.wins += 1
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
+  } else if (game.player1.chosenPiece === 'alien' && game.player2.chosenPiece === 'alien') {
+    game.player1.wonThisRound = false
+    game.player2.wonThisRound = false
+    game.draw = true
   }
   console.log(game.player1);
   console.log(game.player2);
