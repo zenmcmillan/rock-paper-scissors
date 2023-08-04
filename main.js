@@ -16,14 +16,15 @@ var game = {}
 
 classicButton.addEventListener('click', function() {
   goToGame();
-  createGameFunctionality(game, 'rock', 'scissors')
-  //computerTakingItsTurn(game, ['classicGameBoard']);
+  //createGameFunctionality(game, 'rock', 'scissors')
+   computerTakingItsTurn(game, ['classicGameBoard']);
+ // assignPieces()
 });
 
 hardButton.addEventListener('click',function() {
   goToGame();
-  playGame()
-  computerTakingItsTurn(game, ['hardGameBoard']);
+  playGame();
+ // computerTakingItsTurn(game, ['hardGameBoard']);
   
 });
 
@@ -39,9 +40,15 @@ window.addEventListener('load', function() {
 
 // event handlers
 
-
-  //createGameFunctionality(game, 'rock', 'scissors')
-
+function computerTakingItsTurn(game, [array]) {
+  var gameChoice = game[array]
+  var piece = gameChoice[getRandomIndex(gameChoice)]
+  return console.log(piece)
+ }
+ 
+ function getRandomIndex(array) {
+   return Math.floor(Math.random() * array.length)
+ }
 
 function createGameFunctionality(game, playerPiece, computerPiece) {
 
@@ -99,18 +106,10 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
   }
   console.log(game.player1);
   console.log(game.player2);
-  return console.log(game.player1.chosenPiece)
+  //return console.log(game.player1.chosenPiece)
 }
 
-function computerTakingItsTurn(game, [array]) {
- var gameChoice = game[array]
- var piece = gameChoice[getRandomIndex(gameChoice)]
- return console.log(piece)
-}
 
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length)
-}
 
 function renderPlayerData() {
   
