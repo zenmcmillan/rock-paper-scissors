@@ -1,6 +1,5 @@
 * {
   font-family: 'Kalam', cursive;  
-
 }
 
 .full-page {
@@ -48,10 +47,8 @@ aside {
   margin-top: 30px;
   line-height: 2px;
 }
-/* When I'm finished put boar */
 
 .classic-gameboard-container {
- 
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -59,9 +56,15 @@ aside {
   width: 800px;
 }
 
+.classic-gameboard:hover, .harder-pieces-gameboard:hover {
+  cursor: pointer;
+}
+
 .classic-gameboard {
   display: flex;
   justify-content: center;
+  border: 0;
+  background-color: transparent;
 }
 
 .game-piece {
@@ -70,34 +73,10 @@ aside {
   margin: 40px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.harder-pieces-gameboard {
+  border: 0;
+  background-color: transparent;
+}
 
 .classic-and-hard {
   display: flex;
@@ -140,8 +119,7 @@ aside {
   color: white;
   border-radius: 20px;
   width: 140px;  
-  border: 0;
- 
+  border: 0; 
 }
 
 .change-game-button {

@@ -24,8 +24,7 @@ classicButton.addEventListener('click', function() {
 
 hardButton.addEventListener('click',function() {
   goToHardGame();
-  computerTakingItsTurn(game, ['hardGameBoard']);
-  
+  computerTakingItsTurn(game, ['hardGameBoard']); 
 });
 
 changeGameButton.addEventListener('click', function() {
