@@ -7,6 +7,8 @@ var changeGameButton = document.querySelector('.change-game-button');
 var subtitle = document.querySelector('.subtitle');
 var personalGameInfo = document.querySelector('.personal-game-info');
 var computerGameInfo = document.querySelector('.computer-game-info');
+var classicGameBoardContainer = document.querySelector('.classic-gameboard-container');
+var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
 
 // global variables
 
@@ -15,15 +17,14 @@ var game = {}
 // event listeners
 
 classicButton.addEventListener('click', function() {
-  goToGame();
+  goToClassicGame();
  // createGameFunctionality(game, 'rock', 'scissors')
    computerTakingItsTurn(game, ['classicGameBoard']);
 });
 
 hardButton.addEventListener('click',function() {
-  goToGame();
-  computerTakingItsTurn(game, ['hardGameBoard']);
-  
+  goToHardGame();
+  computerTakingItsTurn(game, ['hardGameBoard']); 
 });
 
 changeGameButton.addEventListener('click', function() {
@@ -33,7 +34,7 @@ changeGameButton.addEventListener('click', function() {
 window.addEventListener('load', function() {
   createGame() //data model
   renderPlayerData() //DOM
- 
+  hideGameOnPageLoad()
 });
 
 // event handlers
@@ -138,15 +139,28 @@ function createPlayer(personOrComputer, token) {
   return {name: personOrComputer, token: token,  wins: 0, wonThisRound: false, chosenPiece: 'piece'}
 };
 
-function goToGame() {
+function hideGameOnPageLoad() {
+  classicGameBoardContainer.classList.add('hidden')
+  harderPiecesGameboardContainer.classList.add('hidden')
+}
+
+function goToClassicGame() {
   classicAndHardContainers.classList.add('hidden');
   changeGameButton.classList.remove('hidden');
+  classicGameBoardContainer.classList.remove('hidden');
   subtitle.innerText = 'Choose your fighter!';
 };
+
+function goToHardGame() {
+  goToClassicGame()
+  harderPiecesGameboardContainer.classList.remove('hidden'); 
+}
 
 function goBackToHomePage() {
   classicAndHardContainers.classList.remove('hidden');
   changeGameButton.classList.add('hidden');
+  classicGameBoardContainer.classList.add('hidden');
+  harderPiecesGameboardContainer.classList.add('hidden')
   subtitle.innerText = 'Choose your game!';
 };
 
