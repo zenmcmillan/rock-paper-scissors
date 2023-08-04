@@ -57,7 +57,12 @@ aside {
 }
 
 .classic-gameboard:hover, .harder-pieces-gameboard:hover {
-  cursor: pointer;
+  cursor: pointer; 
+}
+
+.game-piece:hover {
+  transform:scale(1.3);
+ 
 }
 
 .classic-gameboard {
@@ -136,6 +141,7 @@ aside {
 .classic-button:hover, .hard-button:hover, .change-game-button:hover {
   text-decoration: underline;
   cursor: pointer;
+  
 }
 
 .below-button {
