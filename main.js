@@ -16,10 +16,14 @@ var game = {}
 
 classicButton.addEventListener('click', function() {
   goToGame();
+ // createGameFunctionality(game, 'rock', 'scissors')
+   computerTakingItsTurn(game, ['classicGameBoard']);
 });
 
 hardButton.addEventListener('click',function() {
   goToGame();
+  computerTakingItsTurn(game, ['hardGameBoard']);
+  
 });
 
 changeGameButton.addEventListener('click', function() {
@@ -29,58 +33,80 @@ changeGameButton.addEventListener('click', function() {
 window.addEventListener('load', function() {
   createGame() //data model
   renderPlayerData() //DOM
-  classicFunctionality(game)
-  computerTakingItsTurn()
+ 
 });
 
 // event handlers
 
-function classicFunctionality(game) {
-  var player1 = game.player1.chosenPiece
-  var player2 = game.player2.chosenPiece
-  player1 = 'rock'
-  player2 = 'scissors'
+function computerTakingItsTurn(game, [array]) {
+  var gameChoice = game[array]
+  var piece = gameChoice[getRandomIndex(gameChoice)]
+  game.player2.chosenPiece = piece
+  createGameFunctionality(game,'rock', piece) // rock here is temporary. I need to figure out a way to capture the value probably the name when the rock paper or scissors is clicked. 
+  return console.log(game.player2.chosenPiece)
+
+ }
+ 
+ function getRandomIndex(array) {
+   return Math.floor(Math.random() * array.length)
+ }
+
+function createGameFunctionality(game, playerPiece, computerPiece) {
+
+    game.player1.chosenPiece = playerPiece
+    game.player2.chosenPiece = computerPiece
   
-   if (player1 === 'rock' && player2 === 'scissors') {
+    if (game.player1.chosenPiece === 'rock' && game.player2.chosenPiece === 'scissors' || game.player2.chosenPiece === 'lizard') { 
     game.player1.wins += 1
-    game.player1.winThisRound = true
+    game.player1.wonThisRound = true 
    }
-   else if (player2 === 'rock' && player1 === 'scissors') {
+   else if (game.player2.chosenPiece === 'rock' && game.player1.chosenPiece === 'scissors' || game.player1.chosenPiece === 'lizard') {
      game.player2.wins += 1
-     game.player2.winThisRound = true
+     game.player2.wonThisRound = true
    }
-   else if (player1 === 'rock' && player2 === 'rock') {
+   else if (game.player1.chosenPiece === 'rock' && game.player2.chosenPiece === 'rock') {
      game.draw = true
    }
-   else if (player1 === 'scissors' && player2 === 'paper') {
+   else if (game.player1.chosenPiece === 'scissors' && game.player2.chosenPiece === 'paper' || game.player2.chosenPiece === 'lizard') {
      game.player1.wins += 1
-     game.player1.winThisRound = true
+     game.player1.wonThisRound = true
    }
-   else if (player2 === 'scissors' && player1 === 'paper') {
+   else if (game.player2.chosenPiece === 'scissors' && game.player1.chosenPiece === 'paper' || game.player1.chosenPiece === 'lizard') {
      game.player2.wins += 1
-     game.player2.winThisRound = true
+     game.player2.wonThisRound = true
   }
-  else if (player1 === 'scissors' && player2 === 'scissors') {
+  else if (game.player1.chosenPiece === 'scissors' && game.player2.chosenPiece === 'scissors') {
      game.draw = true
   }
-  else if (player1 === 'paper' && player2 === 'rock') {
+  else if (game.player1.chosenPiece === 'paper' && game.player2.chosenPiece === 'rock' || game.player2.chosenPiece === 'alien') {
      game.player1.wins += 1
-     game.player1.winThisRound = true
+     game.player1.wonThisRound = true
    }
-   else if (player2 === 'paper' && player1 === 'rock') {
+   else if (game.player2.chosenPiece === 'paper' && game.player1.chosenPiece === 'rock' || game.player1.chosenPiece === 'alien') {
      game.player2.wins += 1
-     game.player2.winThisRound = true
+     game.player2.wonThisRound = true
   }
-  else if (player1 === 'paper' && player2 === 'paper') {
+  else if (game.player1.chosenPiece === 'paper' && game.player2.chosenPiece === 'paper') {
     game.draw = true
   }
-}
-
-function computerTakingItsTurn() {
-  var index = Math.floor(Math.random() * game.classicGameBoard.length);
-  var piece = game.classicGameBoard[index]
-  
-  return console.log(piece)
+  else if (game.player1.chosenPiece === 'lizard' && game.player2.chosenPiece === 'paper' || game.player2.chosenPiece === 'alien') {
+    game.player1.wins += 1
+    game.player1.wonThisRound = true
+  }
+  else if (game.player2.chosenPiece === 'lizard' && game.player1.chosenPiece === 'paper' || game.player1.chosenPiece === 'alien') {
+    game.player2.wins += 1
+    game.player2.wonThisRound = true
+  }
+  else if (game.player1.chosenPiece === 'alien' && game.player2.chosenPiece === 'scissors' || game.player2.chosenPiece === 'rock') {
+    game.player2.wins += 1
+    game.player2.wonThisRound = true
+  }
+  else if (game.player2.chosenPiece === 'alien' && game.player1.chosenPiece === 'scissors' || game.player1.chosenPiece === 'rock') {
+    game.player1.wins += 1
+    game.player1.wonThisRound = true
+  }
+  console.log(game.player1);
+  console.log(game.player2);
 }
 
 function renderPlayerData() {
@@ -109,7 +135,7 @@ function createGame() {
 }
 
 function createPlayer(personOrComputer, token) {
-  return {name: personOrComputer, token: token,  wins: 0, winThisRound: false, chosenPiece: null}
+  return {name: personOrComputer, token: token,  wins: 0, wonThisRound: false, chosenPiece: 'piece'}
 };
 
 function goToGame() {
