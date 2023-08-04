@@ -9,17 +9,24 @@ var personalGameInfo = document.querySelector('.personal-game-info');
 var computerGameInfo = document.querySelector('.computer-game-info');
 var classicGameBoardContainer = document.querySelector('.classic-gameboard-container');
 var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
+var allGamePiecesContainer = document.querySelector('.all-game-pieces-container')
 
 // global variables
 
-var game = {}
+var game = {};
+var playersClickedPiece;
+var computersChosenPiece;
 
 // event listeners
 
+window.addEventListener('load', function() {
+  createGame() //data model
+  renderPlayerData() //DOM
+  hideGameOnPageLoad()
+});
+
 classicButton.addEventListener('click', function() {
   goToClassicGame();
- // createGameFunctionality(game, 'rock', 'scissors')
-   computerTakingItsTurn(game, ['classicGameBoard']);
 });
 
 hardButton.addEventListener('click',function() {
@@ -31,21 +38,25 @@ changeGameButton.addEventListener('click', function() {
  goBackToHomePage()
 });
 
-window.addEventListener('load', function() {
-  createGame() //data model
-  renderPlayerData() //DOM
-  hideGameOnPageLoad()
-});
+allGamePiecesContainer.addEventListener('click', function(event) {
+  playerClicksPiece(event)
+  computerTakingItsTurn(game, ['classicGameBoard'])
+  createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
+ });
 
 // event handlers
 
+function playerClicksPiece(event) {
+    playersClickedPiece = event.target.id
+   game.player1.chosenPiece = playersClickedPiece
+   return console.log(playersClickedPiece)
+}
+
 function computerTakingItsTurn(game, [array]) {
   var gameChoice = game[array]
-  var piece = gameChoice[getRandomIndex(gameChoice)]
-  game.player2.chosenPiece = piece
-  createGameFunctionality(game,'rock', piece) // rock here is temporary. I need to figure out a way to capture the value probably the name when the rock paper or scissors is clicked. 
+   computersChosenPiece = gameChoice[getRandomIndex(gameChoice)]
+  game.player2.chosenPiece = computersChosenPiece
   return console.log(game.player2.chosenPiece)
-
  }
  
  function getRandomIndex(array) {
