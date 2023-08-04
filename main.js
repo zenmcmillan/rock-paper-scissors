@@ -16,15 +16,13 @@ var game = {}
 
 classicButton.addEventListener('click', function() {
   goToGame();
-  //createGameFunctionality(game, 'rock', 'scissors')
+ // createGameFunctionality(game, 'rock', 'scissors')
    computerTakingItsTurn(game, ['classicGameBoard']);
- // assignPieces()
 });
 
 hardButton.addEventListener('click',function() {
   goToGame();
-  playGame();
- // computerTakingItsTurn(game, ['hardGameBoard']);
+  computerTakingItsTurn(game, ['hardGameBoard']);
   
 });
 
@@ -43,7 +41,10 @@ window.addEventListener('load', function() {
 function computerTakingItsTurn(game, [array]) {
   var gameChoice = game[array]
   var piece = gameChoice[getRandomIndex(gameChoice)]
-  return console.log(piece)
+  game.player2.chosenPiece = piece
+  createGameFunctionality(game,'rock', piece) // rock here is temporary. I need to figure out a way to capture the value probably the name when the rock paper or scissors is clicked. 
+  return console.log(game.player2.chosenPiece)
+
  }
  
  function getRandomIndex(array) {
@@ -106,10 +107,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
   }
   console.log(game.player1);
   console.log(game.player2);
-  //return console.log(game.player1.chosenPiece)
 }
-
-
 
 function renderPlayerData() {
   
