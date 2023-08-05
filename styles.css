@@ -8,7 +8,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  margin: 0;
+  margin: 0; 
 }
 
 .title {
@@ -60,10 +60,6 @@ aside {
   cursor: pointer; 
 }
 
-.game-piece:hover {
-  transform:scale(1.3);
- 
-}
 
 .classic-gameboard {
   display: flex;
@@ -76,6 +72,11 @@ aside {
   width: 200px;
   height: 200px;
   margin: 40px;
+}
+
+.game-piece:hover {
+  transform:scale(1.3);
+ 
 }
 
 .harder-pieces-gameboard {
