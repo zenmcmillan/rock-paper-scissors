@@ -12,7 +12,6 @@ var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-game
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
 var computerGameInfo = document.querySelector('.computer-game-info')
 
-
 // global variables
 
 var game = {};
@@ -51,24 +50,22 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     computerTakingItsTurn(game, ['hardGameBoard'])
     createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
   } 
-  updatePlayerWins()
-  updateComputerWins()
+  
+  showWhoWonTheRound()
+  renderPlayerData()
  });
 
 // event handlers
 
-
-function updatePlayerWins() {
-
-  personalGameInfo.innerHTML = '';
-
-  personalGameInfo.innerHTML += `
-  <section class="track-score personal-game-info">
-  <p class="icons">🙂</p>
-  <p class="player">You</p>
-  <p class="the-personal-wins">Wins:<span class="personal-wins">${game.player1.wins}</span></p> 
-</section>`
+function showWhoWonTheRound() {
+  if (game.player1.wonThisRound) {
+    subtitle.innerText = 'You won this round! 🙂'
   }
+  else if(game.player2.wonThisRound) {
+    subtitle.innerText = 'Computer won this round! 💻'
+  }
+  else subtitle.innerText = 'This Round is a draw!'
+}  
 
 function updateComputerWins() {
 
@@ -81,7 +78,6 @@ function updateComputerWins() {
   <p>Wins:<span> ${game.player2.wins}</span></p>
 </section>`
 }
-
 
 function playerClicksPiece(event) {
     playersClickedPiece = event.target.id
@@ -201,6 +197,7 @@ function renderPlayerData() {
    <p class="player">${game.player2.name}</p>
    <p> Wins:<span> ${game.player2.wins}</span></p>`
 };
+
 
 function createGame() {
  var player1 = createPlayer('You', '🙂');
