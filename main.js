@@ -10,6 +10,8 @@ var computerGameInfo = document.querySelector('.computer-game-info');
 var classicGameBoardContainer = document.querySelector('.classic-gameboard-container');
 var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
+var computerGameInfo = document.querySelector('.computer-game-info')
+
 
 // global variables
 
@@ -43,39 +45,55 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     playerClicksPiece(event)
     computerTakingItsTurn(game, ['classicGameBoard'])
     createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
+    
   } else {
     playerClicksPiece(event)
     computerTakingItsTurn(game, ['hardGameBoard'])
     createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
   } 
+  updatePlayerWins()
+  updateComputerWins()
  });
 
 // event handlers
 
-function updatePlayerInfo(game) {
-  if (game.player1.wonThisRound) {
-    game.player1.wins += 1
-    game.player1.wonThisRound = true 
-    game.player2.wonThisRound = false 
+
+function updatePlayerWins() {
+
+  personalGameInfo.innerHTML = '';
+
+  personalGameInfo.innerHTML += `
+  <section class="track-score personal-game-info">
+  <p class="icons">🙂</p>
+  <p class="player">You</p>
+  <p class="the-personal-wins">Wins:<span class="personal-wins">${game.player1.wins}</span></p> 
+</section>`
   }
-  else if (game.player2.wonThisRound) {
-    game.player1.wins += 1
-    game.player1.wonThisRound = true 
-    game.player2.wonThisRound = false 
-  }
-};
+
+function updateComputerWins() {
+
+  computerGameInfo.innerHTML = '';
+
+  computerGameInfo.innerHTML += `
+  <section class="track-score computer-game-info">
+  <p class="icons">💻</p>
+  <p class="player">Computer</p>
+  <p>Wins:<span> ${game.player2.wins}</span></p>
+</section>`
+}
+
 
 function playerClicksPiece(event) {
     playersClickedPiece = event.target.id
    game.player1.chosenPiece = playersClickedPiece
-   return console.log("players Clicked Piece", playersClickedPiece)
+   return console.log("player:", playersClickedPiece)
 };
 
 function computerTakingItsTurn(game, [array]) {
   var gameChoice = game[array]
    computersChosenPiece = gameChoice[getRandomIndex(gameChoice)]
   game.player2.chosenPiece = computersChosenPiece
-  return console.log("computers Chosen Piece", game.player2.chosenPiece)
+  return console.log("computer:", game.player2.chosenPiece)
  };
  
  function getRandomIndex(array) {
