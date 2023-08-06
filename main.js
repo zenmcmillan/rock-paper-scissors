@@ -40,7 +40,6 @@ classicButton.addEventListener('click', function() {
 
 hardButton.addEventListener('click',function() {
   goToHardGame();
- // computerTakingItsTurn(game, ['hardGameBoard']); 
 });
 
 changeGameButton.addEventListener('click', function() {
@@ -57,13 +56,15 @@ allGamePiecesContainer.addEventListener('click', function(event) {
   showWhoWonTheRound()
   renderPlayerData()
   showEmoji()
+  setTimeout(showChosenPieces, 1000)
  });
 
 
 // event handlers
 
 function showChosenPieces() {
-  
+
+  allGamePiecesContainer.classList.add('hidden')
 }
 // After the emoji pops up hide the whole game container
 // Create new class or classes in html css where the boxes are in the position you want them to be for the students

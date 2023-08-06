@@ -95,8 +95,7 @@ aside {
 
 .rock, .paper, .scissors, .alien, .lizard {
   font-size: 50px;
-  margin-top: -20px; 
-  
+  margin-top: -20px;   
 }
 
 .all-game-pieces-container {
