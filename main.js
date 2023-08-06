@@ -59,7 +59,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
   showEmoji()
   setTimeout(showChosenPieces, 1000)
   setTimeout(hideEmoji, 1000)
- setTimeout(showWhoWonTheRound, 1000)
+ setTimeout(showWhoWonTheRound, 100)
  });
 
 // event handlers
