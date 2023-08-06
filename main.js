@@ -55,11 +55,11 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     makeGameFunctional(event, ['hardGameBoard'])
     harderPiecesGameboardContainer.classList.remove('hidden')
   } 
-  showWhoWonTheRound()
   renderPlayerData()
   showEmoji()
   setTimeout(showChosenPieces, 1000)
   setTimeout(hideEmoji, 1000)
+ setTimeout(showWhoWonTheRound, 1000)
  });
 
 // event handlers
@@ -74,14 +74,6 @@ function showChosenPieces() {
   } 
 }
 
-// function showComputersChosenPiece() {
-//   for (var i = 0; i < gamePieces.length; i++) {
-//     if (gamePieces[i].alt === computersChosenPiece) {
-//       gamePieces[i].classList.remove('hidden')
-//     }
-//   }
-// }
-
 function hideEmoji() {
   for (var i = 0; i < emojis.length; i++) {
     if (emojis[i].classList[1] === playersClickedPiece) {
@@ -89,19 +81,6 @@ function hideEmoji() {
     }
   }
 }
-
-// if (gamepiece[i].alt === playersClickedPiece) {
- // remove hidden
-//} Remove hidden
-// probably shoue run for loop on gamepieces to add hidden class
-
-
-// After the emoji pops up hide the whole game container
-// Create new class or classes in html css where the boxes are in the position you want them to be for the students
-// Add each game piece image into css. As in link it in css
-//Or take the ids from the button and put them on the pieces. Check if it breaks the game functionality
-// Then you can
-
 
 function showEmoji() {
   if (playersClickedPiece === 'rock') {
