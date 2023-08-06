@@ -66,11 +66,21 @@ allGamePiecesContainer.addEventListener('click', function(event) {
 
 function showChosenPieces() {
   for (var i = 0; i < gamePieces.length; i++) {
-    if (gamePieces[i].alt != playersClickedPiece) {
+    if (gamePieces[i].alt !== playersClickedPiece && gamePieces[i].alt !== computersChosenPiece) {
       gamePieces[i].classList.add('hidden')
+    } else {
+      gamePieces[i].classList.remove('hidden')
     }
   } 
 }
+
+// function showComputersChosenPiece() {
+//   for (var i = 0; i < gamePieces.length; i++) {
+//     if (gamePieces[i].alt === computersChosenPiece) {
+//       gamePieces[i].classList.remove('hidden')
+//     }
+//   }
+// }
 
 function hideEmoji() {
   for (var i = 0; i < emojis.length; i++) {
