@@ -20,6 +20,7 @@ var paper = document.querySelector('.paper')
 var scissors = document.querySelector('.scissors')
 var alien = document.querySelector('.alien')
 var lizard = document.querySelector('.lizard')
+var allDivs = document.querySelectorAll('div')
 
 // global variables
 
@@ -58,22 +59,10 @@ allGamePiecesContainer.addEventListener('click', function(event) {
   renderPlayerData()
   showEmoji()
   setTimeout(showChosenPieces, 1000)
+  setTimeout(hideEmoji, 1000)
  });
 
 // event handlers
-
-//var winPieces = document.querySelector('win-pieces');
-
-// function showChosenPieces() {
-//   // classicGameBoardContainer.classList.add('hidden');
-//   // harderPiecesGameboardContainer.classList.add('hidden')
-// //gamePieces[0].classList.add('hidden')
-// gamePieces[1].classList.add('hidden')
-// gamePieces[2].classList.add('hidden')
-// gamePieces[3].classList.add('hidden')
-// //gamePieces[4].classList.add('hidden')
- 
-// }
 
 function showChosenPieces() {
   for (var i = 0; i < gamePieces.length; i++) {
@@ -83,7 +72,13 @@ function showChosenPieces() {
   } 
 }
 
-
+function hideEmoji() {
+  for (var i = 0; i < emojis.length; i++) {
+    if (emojis[i].classList[1] === playersClickedPiece) {
+      emojis[i].classList.add('hidden')
+    }
+  }
+}
 
 // if (gamepiece[i].alt === playersClickedPiece) {
  // remove hidden
