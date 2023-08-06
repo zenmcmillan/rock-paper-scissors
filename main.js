@@ -10,7 +10,7 @@ var computerGameInfo = document.querySelector('.computer-game-info');
 var classicGameBoardContainer = document.querySelector('.classic-gameboard-container');
 var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
-var computerGameInfo = document.querySelector('.computer-game-info')
+var computerGameInfo = document.querySelector('.computer-game-info');
 
 // global variables
 
@@ -51,8 +51,8 @@ allGamePiecesContainer.addEventListener('click', function(event) {
 
 // event handlers
 
-function showEmojiUnderPiece() {
-
+function adjustBoardContainer() {
+ allGamePiecesContainer 
 }
 
 function makeGameFunctional(event, [gameArray]) {

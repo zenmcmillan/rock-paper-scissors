@@ -1,6 +1,6 @@
 * {
   font-family: 'Kalam', cursive; 
-  outline: 2px solid black; 
+
 }
 
 .full-page {
@@ -73,7 +73,6 @@ aside {
   width: 180px;
   height: 180px;
   margin: 40px;
-  outline: 3px solid hotpink;
 }
 
 .game-piece:hover {
@@ -86,26 +85,23 @@ aside {
   justify-content: center;
   border: 0;
   background-color: transparent;
-  outline: 2px solid blue;
 }
 
 .pieces-container {
   display: flex;
   flex-direction: column;
-  outline: 3px solid red;
   align-items: center;
 }
 
 .emoji {
   font-size: 50px;
-  margin-top: -50px;
-
+  margin-top: -20px;
 }
-
 
 .all-game-pieces-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 
