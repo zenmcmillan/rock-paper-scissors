@@ -10,7 +10,15 @@ var computerGameInfo = document.querySelector('.computer-game-info');
 var classicGameBoardContainer = document.querySelector('.classic-gameboard-container');
 var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
+var emojis = document.querySelectorAll('.emoji')
 var computerGameInfo = document.querySelector('.computer-game-info');
+var piecesContainer = document.querySelectorAll('.pieces-container');
+var gamePieces = document.querySelectorAll('.game-piece');
+var rock = document.querySelector('.rock')
+var paper = document.querySelector('.paper')
+var scissors = document.querySelector('.scissors')
+var alien = document.querySelector('.alien')
+var lizard = document.querySelector('.lizard')
 
 // global variables
 
@@ -44,16 +52,16 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     makeGameFunctional(event, ['classicGameBoard'])
   } else {
     makeGameFunctional(event, ['hardGameBoard'])
+    harderPiecesGameboardContainer.classList.remove('hidden')
   } 
   showWhoWonTheRound()
   renderPlayerData()
+  showEmojiUnderClickedPiece()
  });
+
 
 // event handlers
 
-function adjustBoardContainer() {
- allGamePiecesContainer 
-}
 
 function makeGameFunctional(event, [gameArray]) {
   playerClicksPiece(event)
@@ -84,10 +92,14 @@ function updateComputerWins() {
 }
 
 function playerClicksPiece(event) {
-    playersClickedPiece = event.target.id
+    playersClickedPiece = event.target.name
    game.player1.chosenPiece = playersClickedPiece
    return console.log("player:", playersClickedPiece)
 };
+
+function showEmojiUnderClickedPiece() {
+ console.log(playersClickedPiece)
+}
 
 function computerTakingItsTurn(game, [array]) {
   var gameChoice = game[array]
@@ -304,18 +316,24 @@ function createPlayer(personOrComputer, token) {
 function hideGameOnPageLoad() {
   classicGameBoardContainer.classList.add('hidden')
   harderPiecesGameboardContainer.classList.add('hidden')
+  
 }
 
 function goToClassicGame() {
   classicAndHardContainers.classList.add('hidden');
   changeGameButton.classList.remove('hidden');
   classicGameBoardContainer.classList.remove('hidden');
+  rock.classList.add('hidden')
+  paper.classList.add('hidden')
+  scissors.classList.add('hidden')
   subtitle.innerText = 'Choose your fighter!';
 };
 
 function goToHardGame() {
   goToClassicGame()
   harderPiecesGameboardContainer.classList.remove('hidden'); 
+  alien.classList.add('hidden')
+  lizard.classList.add('hidden')
 }
 
 function goBackToHomePage() {

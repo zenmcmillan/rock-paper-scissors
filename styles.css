@@ -93,9 +93,10 @@ aside {
   align-items: center;
 }
 
-.emoji {
+.rock, .paper, .scissors, .alien, .lizard {
   font-size: 50px;
-  margin-top: -20px;
+  margin-top: -20px; 
+  
 }
 
 .all-game-pieces-container {
@@ -104,7 +105,9 @@ aside {
   justify-content: center;
 }
 
-
+.hide {
+  opacity: 0;
+}
 
 
 
