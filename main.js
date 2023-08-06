@@ -61,19 +61,6 @@ function makeGameFunctional(event, [gameArray]) {
   createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
 }
 
-
-// function makeGameFunctional(event, ) {
-//   playerClicksPiece(event)
-//   computerTakingItsTurn(game, ['classicGameBoard'])
-//   createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
-// }
-
-// function makeHardGameFunctional(event) {
-//   playerClicksPiece(event)
-//     computerTakingItsTurn(game, ['hardGameBoard'])
-//     createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
-// }
-
 function showWhoWonTheRound() {
   if (game.player1.wonThisRound) {
     subtitle.innerText = 'You won this round! 🙂'

@@ -1,5 +1,6 @@
 * {
-  font-family: 'Kalam', cursive;  
+  font-family: 'Kalam', cursive; 
+  outline: 2px solid black; 
 }
 
 .full-page {
@@ -69,9 +70,10 @@ aside {
 }
 
 .game-piece {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   margin: 40px;
+  outline: 3px solid hotpink;
 }
 
 .game-piece:hover {
@@ -80,9 +82,65 @@ aside {
 }
 
 .harder-pieces-gameboard {
+  display: flex;
+  justify-content: center;
   border: 0;
   background-color: transparent;
+  outline: 2px solid blue;
 }
+
+.pieces-container {
+  display: flex;
+  flex-direction: column;
+  outline: 3px solid red;
+  align-items: center;
+}
+
+.emoji {
+  font-size: 50px;
+  margin-top: -50px;
+
+}
+
+
+.all-game-pieces-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .classic-and-hard {
   display: flex;
