@@ -56,12 +56,39 @@ allGamePiecesContainer.addEventListener('click', function(event) {
   } 
   showWhoWonTheRound()
   renderPlayerData()
-  showEmojiUnderClickedPiece()
+  showEmoji()
  });
 
 
 // event handlers
 
+function showChosenPieces() {
+  
+}
+// After the emoji pops up hide the whole game container
+// Create new class or classes in html css where the boxes are in the position you want them to be for the students
+// Add each game piece image into css. As in link it in css
+//Or take the ids from the button and put them on the pieces. Check if it breaks the game functionality
+// Then you can
+
+
+function showEmoji() {
+  if (playersClickedPiece === 'rock') {
+    rock.classList.remove('hidden')
+  }
+  else if (playersClickedPiece === 'paper') {
+    paper.classList.remove('hidden')
+  }
+  else if (playersClickedPiece === 'scissors') {
+    scissors.classList.remove('hidden')
+  }
+  else if (playersClickedPiece === 'lizard') {
+   lizard.classList.remove('hidden')
+  }
+  else if (playersClickedPiece === 'alien') {
+    alien.classList.remove('hidden')
+  }
+}
 
 function makeGameFunctional(event, [gameArray]) {
   playerClicksPiece(event)
@@ -92,14 +119,10 @@ function updateComputerWins() {
 }
 
 function playerClicksPiece(event) {
-    playersClickedPiece = event.target.name
+    playersClickedPiece = event.target.id
    game.player1.chosenPiece = playersClickedPiece
    return console.log("player:", playersClickedPiece)
 };
-
-function showEmojiUnderClickedPiece() {
- console.log(playersClickedPiece)
-}
 
 function computerTakingItsTurn(game, [array]) {
   var gameChoice = game[array]

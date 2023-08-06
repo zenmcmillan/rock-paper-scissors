@@ -1,6 +1,5 @@
 * {
   font-family: 'Kalam', cursive; 
-
 }
 
 .full-page {
@@ -91,6 +90,7 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 280px;
 }
 
 .rock, .paper, .scissors, .alien, .lizard {
