@@ -8,6 +8,7 @@ var subtitle = document.querySelector('.subtitle');
 var personalGameInfo = document.querySelector('.personal-game-info');
 var computerGameInfo = document.querySelector('.computer-game-info');
 var classicGameBoardContainer = document.querySelector('.classic-gameboard-container');
+var classicGameBoard = document.querySelector('.classic-game');
 var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
 var emojis = document.querySelectorAll('.emoji')
@@ -59,13 +60,37 @@ allGamePiecesContainer.addEventListener('click', function(event) {
   setTimeout(showChosenPieces, 1000)
  });
 
-
 // event handlers
 
-function showChosenPieces() {
+//var winPieces = document.querySelector('win-pieces');
 
-  allGamePiecesContainer.classList.add('hidden')
+// function showChosenPieces() {
+//   // classicGameBoardContainer.classList.add('hidden');
+//   // harderPiecesGameboardContainer.classList.add('hidden')
+// //gamePieces[0].classList.add('hidden')
+// gamePieces[1].classList.add('hidden')
+// gamePieces[2].classList.add('hidden')
+// gamePieces[3].classList.add('hidden')
+// //gamePieces[4].classList.add('hidden')
+ 
+// }
+
+function showChosenPieces() {
+  for (var i = 0; i < gamePieces.length; i++) {
+    if (gamePieces[i].alt != playersClickedPiece) {
+      gamePieces[i].classList.add('hidden')
+    }
+  } 
 }
+
+
+
+// if (gamepiece[i].alt === playersClickedPiece) {
+ // remove hidden
+//} Remove hidden
+// probably shoue run for loop on gamepieces to add hidden class
+
+
 // After the emoji pops up hide the whole game container
 // Create new class or classes in html css where the boxes are in the position you want them to be for the students
 // Add each game piece image into css. As in link it in css
