@@ -8,7 +8,7 @@ var subtitle = document.querySelector('.subtitle');
 var personalGameInfo = document.querySelector('.personal-game-info');
 var computerGameInfo = document.querySelector('.computer-game-info');
 var classicGameBoardContainer = document.querySelector('.classic-gameboard-container');
-var classicGameBoard = document.querySelector('.classic-game');
+var classicGameBoard = document.querySelector('.classic-gameboard');
 var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
 var emojis = document.querySelectorAll('.emoji')
@@ -49,18 +49,20 @@ changeGameButton.addEventListener('click', function() {
 });
 
 allGamePiecesContainer.addEventListener('click', function(event) {
-  if (harderPiecesGameboardContainer.classList.contains('hidden')) {
+  if (gamePieces.length === 5) {
     makeGameFunctional(event, ['classicGameBoard'])
   } else {
     makeGameFunctional(event, ['hardGameBoard'])
-    harderPiecesGameboardContainer.classList.remove('hidden')
   } 
   renderPlayerData()
   showEmoji()
   setTimeout(showChosenPieces, 1000)
   setTimeout(hideEmoji, 1000)
- setTimeout(showWhoWonTheRound, 100)
+ setTimeout(showWhoWonTheRound, 1000)
+ setTimeout(resetHardGame, 2000)
  });
+
+
 
 // event handlers
 
@@ -68,9 +70,7 @@ function showChosenPieces() {
   for (var i = 0; i < gamePieces.length; i++) {
     if (gamePieces[i].alt !== playersClickedPiece && gamePieces[i].alt !== computersChosenPiece) {
       gamePieces[i].classList.add('hidden')
-    } else {
-      gamePieces[i].classList.remove('hidden')
-    }
+    } 
   } 
 }
 
@@ -108,10 +108,10 @@ function makeGameFunctional(event, [gameArray]) {
 
 function showWhoWonTheRound() {
   if (game.player1.wonThisRound) {
-    subtitle.innerText = 'You won this round! 🙂'
+    subtitle.innerText = '🙂 You won this round! 🙂'
   }
   else if(game.player2.wonThisRound) {
-    subtitle.innerText = 'Computer won this round! 💻'
+    subtitle.innerText = '💻 Computer won this round! 💻'
   }
   else subtitle.innerText = 'This Round is a draw!'
 }  
@@ -347,33 +347,51 @@ function createPlayer(personOrComputer, token) {
 };
 
 function hideGameOnPageLoad() {
-  classicGameBoardContainer.classList.add('hidden')
-  harderPiecesGameboardContainer.classList.add('hidden')
-  
+  allGamePiecesContainer.classList.add('hidden')  
 }
 
 function goToClassicGame() {
-  classicAndHardContainers.classList.add('hidden');
+  classicAndHardContainers.classList.add('hidden')
   changeGameButton.classList.remove('hidden');
-  classicGameBoardContainer.classList.remove('hidden');
-  rock.classList.add('hidden')
-  paper.classList.add('hidden')
-  scissors.classList.add('hidden')
   subtitle.innerText = 'Choose your fighter!';
+  allGamePiecesContainer.classList.remove('hidden')
+  for (var i = 0; i < gamePieces.length; i++) {
+    if (gamePieces[i].alt === 'lizard') {
+      gamePieces[i].classList.add('hidden')
+    }
+    if (gamePieces[i].alt === 'alien') {
+      gamePieces[i].classList.add('hidden')
+    }
+  }
+
 };
 
 function goToHardGame() {
-  goToClassicGame()
-  harderPiecesGameboardContainer.classList.remove('hidden'); 
-  alien.classList.add('hidden')
-  lizard.classList.add('hidden')
+  changeGameButton.classList.remove('hidden')
+  classicAndHardContainers.classList.add('hidden')
+  allGamePiecesContainer.classList.remove('hidden')
+  for (var i = 0; i < gamePieces.length; i++) {
+    if (gamePieces[i].alt === 'lizard') {
+      gamePieces[i].classList.remove('hidden')
+    }
+    if (gamePieces[i].alt === 'alien') {
+      gamePieces[i].classList.remove('hidden')
+    }
+  }
+}
+
+function resetHardGame() {
+ for(var i = 0; i < gamePieces.length; i++) {
+  if (gamePieces[i].classList.contains('hidden')) {
+    gamePieces[i].classList.remove('hidden')
+  }
+ }
 }
 
 function goBackToHomePage() {
   classicAndHardContainers.classList.remove('hidden');
   changeGameButton.classList.add('hidden');
-  classicGameBoardContainer.classList.add('hidden');
-  harderPiecesGameboardContainer.classList.add('hidden')
+  allGamePiecesContainer.classList.add('hidden')
   subtitle.innerText = 'Choose your game!';
 };
 
