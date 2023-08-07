@@ -36,35 +36,63 @@ window.addEventListener('load', function() {
   hideGameOnPageLoad()
 });
 
-classicButton.addEventListener('click', function() {
+classicButton.addEventListener('click', function(event) {
   goToClassicGame();
+
 });
 
-hardButton.addEventListener('click',function() {
+hardButton.addEventListener('click',function(event) {
   goToHardGame();
+ 
 });
 
 changeGameButton.addEventListener('click', function() {
  goBackToHomePage()
 });
 
+// allGamePiecesContainer.addEventListener('click', function(event) {
+//   if (gamePieces) {
+//     makeGameFunctional(event, ['classicGameBoard'])
+//   } else {
+//     makeGameFunctional(event, ['hardGameBoard'])
+//   } 
+//   renderPlayerData()
+//   showEmoji()
+//   setTimeout(showChosenPieces, 1000)
+//   setTimeout(hideEmoji, 1000)
+//  setTimeout(showWhoWonTheRound, 1000)
+//  setTimeout(resetHardGame, 2000)
+//  });
+
 allGamePiecesContainer.addEventListener('click', function(event) {
-  if (gamePieces.length === 5) {
+  if (game.classicOrHard === 'classic') {
     makeGameFunctional(event, ['classicGameBoard'])
+    renderPlayerData()
+  showEmoji()
+  setTimeout(showChosenPieces, 1000)
+  setTimeout(hideEmoji, 1000)
+  setTimeout(showWhoWonTheRound, 1000)
+  setTimeout(resetClassicGame, 2000)
   } else {
     makeGameFunctional(event, ['hardGameBoard'])
-  } 
-  renderPlayerData()
+    renderPlayerData()
   showEmoji()
   setTimeout(showChosenPieces, 1000)
   setTimeout(hideEmoji, 1000)
  setTimeout(showWhoWonTheRound, 1000)
  setTimeout(resetHardGame, 2000)
+  } 
+//   renderPlayerData()
+//   showEmoji()
+//   setTimeout(showChosenPieces, 1000)
+//   setTimeout(hideEmoji, 1000)
+//  setTimeout(showWhoWonTheRound, 1000)
+//  setTimeout(resetHardGame, 2000)
  });
 
 
-
 // event handlers
+
 
 function showChosenPieces() {
   for (var i = 0; i < gamePieces.length; i++) {
@@ -338,7 +366,7 @@ function createGame() {
  var player1 = createPlayer('You', '🙂');
  var player2 = createPlayer('Computer', '💻');
  game = {player1, player2, classicGameBoard: ['rock', 'paper', 'scissors'], 
-  hardGameBoard: ['rock', 'paper', 'scissors', 'alien', 'lizard'], draw: false}
+  hardGameBoard: ['rock', 'paper', 'scissors', 'alien', 'lizard'], classicOrHard: null, draw: false}
  console.log(game)
 }
 
@@ -351,6 +379,7 @@ function hideGameOnPageLoad() {
 }
 
 function goToClassicGame() {
+  game.classicOrHard = 'classic'
   classicAndHardContainers.classList.add('hidden')
   changeGameButton.classList.remove('hidden');
   subtitle.innerText = 'Choose your fighter!';
@@ -362,11 +391,21 @@ function goToClassicGame() {
     if (gamePieces[i].alt === 'alien') {
       gamePieces[i].classList.add('hidden')
     }
+    console.log()
   }
-
 };
 
+function resetClassicGame() {
+  for (var i = 0; i < gamePieces.length; i++) {
+      gamePieces[0].classList.remove('hidden')
+      gamePieces[1].classList.remove('hidden')
+      gamePieces[2].classList.remove('hidden')
+    }
+  }
+
+
 function goToHardGame() {
+  game.classicOrHard = 'hard'
   changeGameButton.classList.remove('hidden')
   classicAndHardContainers.classList.add('hidden')
   allGamePiecesContainer.classList.remove('hidden')
