@@ -1,5 +1,6 @@
 * {
   font-family: 'Kalam', cursive; 
+ 
 }
 
 .full-page {
@@ -8,6 +9,7 @@
   height: 100vh;
   width: 100vw;
   margin: 0;
+
 }
 
 .title {
@@ -53,64 +55,33 @@ aside {
   justify-content: center;
 }
 
-.classic-gameboard-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 800px;
-}
-
-.classic-gameboard {
-  display: flex;
-  justify-content: center;
-  border: 0;
-  background-color: transparent;
-}
 
 .game-piece {
-  width: 180px;
-  height: 180px;
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  height: 160px;
   margin: 40px;
 }
 
 .game-piece:hover {
   transform:scale(1.3); 
+  cursor: pointer; 
 }
 
 .pieces-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 280px;
+  height: 280px; 
 }
 
-.classic-gameboard:hover, .harder-pieces-gameboard:hover {
-  cursor: pointer; 
-}
-
-.harder-pieces-gameboard {
-  display: flex;
-  justify-content: center;
-  border: 0;
-  background-color: transparent;
-}
 
 .rock, .paper, .scissors, .alien, .lizard {
-  font-size: 50px;
+  font-size: 40px;
   margin-top: -20px;   
 }
 
-.win-pieces-container {
-  display: flex;
-  height: 400px;
-  width: 400px;
-  outline: 2px solid black;
-}
-
-.hide {
-  opacity: 0;
-}
 
 .classic-and-hard {
   display: flex;

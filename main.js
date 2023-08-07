@@ -8,7 +8,7 @@ var subtitle = document.querySelector('.subtitle');
 var personalGameInfo = document.querySelector('.personal-game-info');
 var computerGameInfo = document.querySelector('.computer-game-info');
 var classicGameBoardContainer = document.querySelector('.classic-gameboard-container');
-var classicGameBoard = document.querySelector('.classic-game');
+var classicGameBoard = document.querySelector('.classic-gameboard');
 var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
 var emojis = document.querySelectorAll('.emoji')
@@ -26,7 +26,7 @@ var allDivs = document.querySelectorAll('div')
 
 var game = {};
 var playersClickedPiece;
-var computersChosenPiece;
+var computersChosenPiece = 'rock';
 
 // event listeners
 
@@ -36,12 +36,14 @@ window.addEventListener('load', function() {
   hideGameOnPageLoad()
 });
 
-classicButton.addEventListener('click', function() {
-  goToClassicGame();
+classicButton.addEventListener('click', function(event) {
+  goToClassicGame(event);
+
 });
 
-hardButton.addEventListener('click',function() {
+hardButton.addEventListener('click',function(event) {
   goToHardGame();
+ 
 });
 
 changeGameButton.addEventListener('click', function() {
@@ -49,29 +51,69 @@ changeGameButton.addEventListener('click', function() {
 });
 
 allGamePiecesContainer.addEventListener('click', function(event) {
-  if (harderPiecesGameboardContainer.classList.contains('hidden')) {
+  if (game.classicOrHard === 'classic') {
     makeGameFunctional(event, ['classicGameBoard'])
+    renderPlayerData()
+    showEmoji()
+    setTimeout(showChosenPieces, 1000)
+    setTimeout(hideEmoji, 1000)
+    setTimeout(showWhoWonTheRound, 1000)
+    setTimeout(handleDrawState, 1000)
+    setTimeout(resetClassicGame, 2500)
   } else {
     makeGameFunctional(event, ['hardGameBoard'])
-    harderPiecesGameboardContainer.classList.remove('hidden')
+    renderPlayerData()
+    showEmoji()
+    setTimeout(showChosenPieces, 1000)
+    setTimeout(hideEmoji, 1000)
+    setTimeout(showWhoWonTheRound, 1000)
+    setTimeout (handleDrawState, 1000)
+    setTimeout(resetHardGame, 2500)
   } 
-  renderPlayerData()
-  showEmoji()
-  setTimeout(showChosenPieces, 1000)
-  setTimeout(hideEmoji, 1000)
- setTimeout(showWhoWonTheRound, 100)
  });
+
 
 // event handlers
 
+function handleDrawState() {
+  if (game.draw && playersClickedPiece === 'rock') {
+    allGamePiecesContainer.innerHTML += `
+    <div class="pieces-container">
+      <img class="game-piece" alt="rock" id="rock" src="./assets/happy-rocks.png">
+   </div>`
+ }
+ else if (game.draw && playersClickedPiece === 'paper') {
+  allGamePiecesContainer.innerHTML += `
+  <div class="pieces-container">
+  <img class="game-piece" alt="paper" id="paper" src="./assets/happy-paper.png">
+ </div>`
+}
+else if (game.draw && playersClickedPiece === 'scissors') {
+  allGamePiecesContainer.innerHTML += `
+  <div class="pieces-container">
+    <img class="game-piece" alt="scissors" id="scissors" src="./assets/happy-scissors.png">
+  </div>`
+}
+else if (game.draw && playersClickedPiece === 'lizard') {
+  allGamePiecesContainer.innerHTML += `
+  <div class="pieces-container">
+    <img class="game-piece"  alt="lizard" id="lizard" src="./assets/lizard.png">
+  </div>`
+}
+else if (game.draw && playersClickedPiece === 'alien') {
+  allGamePiecesContainer.innerHTML += `
+  <div class="pieces-container">
+    <img class="game-piece"  alt="alien" id="alien" src="./assets/happy-alien.png">
+  </div>`
+  }
+};
+  
 function showChosenPieces() {
   for (var i = 0; i < gamePieces.length; i++) {
     if (gamePieces[i].alt !== playersClickedPiece && gamePieces[i].alt !== computersChosenPiece) {
       gamePieces[i].classList.add('hidden')
-    } else {
-      gamePieces[i].classList.remove('hidden')
-    }
-  } 
+    } 
+  }   
 }
 
 function hideEmoji() {
@@ -108,10 +150,10 @@ function makeGameFunctional(event, [gameArray]) {
 
 function showWhoWonTheRound() {
   if (game.player1.wonThisRound) {
-    subtitle.innerText = 'You won this round! 🙂'
+    subtitle.innerText = '🙂 You won this round! 🙂'
   }
   else if(game.player2.wonThisRound) {
-    subtitle.innerText = 'Computer won this round! 💻'
+    subtitle.innerText = '💻 Computer won this round! 💻'
   }
   else subtitle.innerText = 'This Round is a draw!'
 }  
@@ -338,7 +380,7 @@ function createGame() {
  var player1 = createPlayer('You', '🙂');
  var player2 = createPlayer('Computer', '💻');
  game = {player1, player2, classicGameBoard: ['rock', 'paper', 'scissors'], 
-  hardGameBoard: ['rock', 'paper', 'scissors', 'alien', 'lizard'], draw: false}
+  hardGameBoard: ['rock', 'paper', 'scissors', 'alien', 'lizard'], classicOrHard: null, draw: false}
  console.log(game)
 }
 
@@ -347,33 +389,63 @@ function createPlayer(personOrComputer, token) {
 };
 
 function hideGameOnPageLoad() {
-  classicGameBoardContainer.classList.add('hidden')
-  harderPiecesGameboardContainer.classList.add('hidden')
-  
+  allGamePiecesContainer.classList.add('hidden')  
 }
 
 function goToClassicGame() {
-  classicAndHardContainers.classList.add('hidden');
+  game.classicOrHard = 'classic'
+  classicAndHardContainers.classList.add('hidden')
   changeGameButton.classList.remove('hidden');
-  classicGameBoardContainer.classList.remove('hidden');
-  rock.classList.add('hidden')
-  paper.classList.add('hidden')
-  scissors.classList.add('hidden')
   subtitle.innerText = 'Choose your fighter!';
+  allGamePiecesContainer.classList.remove('hidden')
+  for (var i = 0; i < gamePieces.length; i++) {
+    if (gamePieces[i].alt === 'lizard') {
+      gamePieces[i].classList.add('hidden')
+    }
+    if (gamePieces[i].alt === 'alien') {
+      gamePieces[i].classList.add('hidden')
+    }
+    console.log()
+  }
 };
 
+function resetClassicGame() {
+  for (var i = 0; i < gamePieces.length; i++) {
+      gamePieces[0].classList.remove('hidden')
+      gamePieces[1].classList.remove('hidden')
+      gamePieces[2].classList.remove('hidden')
+      subtitle.innerText = 'Choose your fighter!'
+    }
+  }
+
 function goToHardGame() {
-  goToClassicGame()
-  harderPiecesGameboardContainer.classList.remove('hidden'); 
-  alien.classList.add('hidden')
-  lizard.classList.add('hidden')
+  game.classicOrHard = 'hard'
+  changeGameButton.classList.remove('hidden')
+  classicAndHardContainers.classList.add('hidden')
+  allGamePiecesContainer.classList.remove('hidden')
+  for (var i = 0; i < gamePieces.length; i++) {
+    if (gamePieces[i].alt === 'lizard') {
+      gamePieces[i].classList.remove('hidden')
+    }
+    if (gamePieces[i].alt === 'alien') {
+      gamePieces[i].classList.remove('hidden')
+    }
+  }
+}
+
+function resetHardGame() {
+ for(var i = 0; i < gamePieces.length; i++) {
+  if (gamePieces[i].classList.contains('hidden')) {
+    gamePieces[i].classList.remove('hidden')
+    subtitle.innerText = 'Choose your fighter!'
+  }
+ }
 }
 
 function goBackToHomePage() {
   classicAndHardContainers.classList.remove('hidden');
   changeGameButton.classList.add('hidden');
-  classicGameBoardContainer.classList.add('hidden');
-  harderPiecesGameboardContainer.classList.add('hidden')
+  allGamePiecesContainer.classList.add('hidden')
   subtitle.innerText = 'Choose your game!';
 };
 
