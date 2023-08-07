@@ -72,7 +72,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
   setTimeout(showChosenPieces, 1000)
   setTimeout(hideEmoji, 1000)
   setTimeout(showWhoWonTheRound, 1000)
-  setTimeout(resetClassicGame, 2000)
+  setTimeout(resetClassicGame, 2500)
   } else {
     makeGameFunctional(event, ['hardGameBoard'])
     renderPlayerData()
@@ -80,14 +80,8 @@ allGamePiecesContainer.addEventListener('click', function(event) {
   setTimeout(showChosenPieces, 1000)
   setTimeout(hideEmoji, 1000)
  setTimeout(showWhoWonTheRound, 1000)
- setTimeout(resetHardGame, 2000)
+ setTimeout(resetHardGame, 2500)
   } 
-//   renderPlayerData()
-//   showEmoji()
-//   setTimeout(showChosenPieces, 1000)
-//   setTimeout(hideEmoji, 1000)
-//  setTimeout(showWhoWonTheRound, 1000)
-//  setTimeout(resetHardGame, 2000)
  });
 
 
@@ -400,9 +394,9 @@ function resetClassicGame() {
       gamePieces[0].classList.remove('hidden')
       gamePieces[1].classList.remove('hidden')
       gamePieces[2].classList.remove('hidden')
+      subtitle.innerText = 'Choose your fighter!'
     }
   }
-
 
 function goToHardGame() {
   game.classicOrHard = 'hard'
@@ -423,6 +417,7 @@ function resetHardGame() {
  for(var i = 0; i < gamePieces.length; i++) {
   if (gamePieces[i].classList.contains('hidden')) {
     gamePieces[i].classList.remove('hidden')
+    subtitle.innerText = 'Choose your fighter!'
   }
  }
 }
