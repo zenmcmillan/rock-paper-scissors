@@ -26,7 +26,7 @@ var allDivs = document.querySelectorAll('div')
 
 var game = {};
 var playersClickedPiece;
-var computersChosenPiece;
+var computersChosenPiece = 'rock';
 
 // event listeners
 
@@ -37,7 +37,7 @@ window.addEventListener('load', function() {
 });
 
 classicButton.addEventListener('click', function(event) {
-  goToClassicGame();
+  goToClassicGame(event);
 
 });
 
@@ -50,50 +50,70 @@ changeGameButton.addEventListener('click', function() {
  goBackToHomePage()
 });
 
-// allGamePiecesContainer.addEventListener('click', function(event) {
-//   if (gamePieces) {
-//     makeGameFunctional(event, ['classicGameBoard'])
-//   } else {
-//     makeGameFunctional(event, ['hardGameBoard'])
-//   } 
-//   renderPlayerData()
-//   showEmoji()
-//   setTimeout(showChosenPieces, 1000)
-//   setTimeout(hideEmoji, 1000)
-//  setTimeout(showWhoWonTheRound, 1000)
-//  setTimeout(resetHardGame, 2000)
-//  });
-
 allGamePiecesContainer.addEventListener('click', function(event) {
   if (game.classicOrHard === 'classic') {
     makeGameFunctional(event, ['classicGameBoard'])
     renderPlayerData()
-  showEmoji()
-  setTimeout(showChosenPieces, 1000)
-  setTimeout(hideEmoji, 1000)
-  setTimeout(showWhoWonTheRound, 1000)
-  setTimeout(resetClassicGame, 2500)
+    showEmoji()
+    setTimeout(showChosenPieces, 1000)
+    setTimeout(hideEmoji, 1000)
+    setTimeout(showWhoWonTheRound, 1000)
+    setTimeout(handleDrawState, 1000)
+    setTimeout(resetClassicGame, 2500)
   } else {
     makeGameFunctional(event, ['hardGameBoard'])
     renderPlayerData()
-  showEmoji()
-  setTimeout(showChosenPieces, 1000)
-  setTimeout(hideEmoji, 1000)
- setTimeout(showWhoWonTheRound, 1000)
- setTimeout(resetHardGame, 2500)
+    showEmoji()
+    setTimeout(showChosenPieces, 1000)
+    setTimeout(hideEmoji, 1000)
+    setTimeout(showWhoWonTheRound, 1000)
+    setTimeout (handleDrawState, 1000)
+    setTimeout(resetHardGame, 2500)
   } 
  });
 
 
 // event handlers
 
-
+function handleDrawState() {
+  if (game.draw && playersClickedPiece === 'rock') {
+    allGamePiecesContainer.innerHTML += `
+    <div class="pieces-container">
+      <img class="game-piece" alt="rock" id="rock" src="./assets/happy-rocks.png">
+   </div>`
+ }
+ else if (game.draw && playersClickedPiece === 'paper') {
+  allGamePiecesContainer.innerHTML += `
+  <div class="pieces-container">
+  <img class="game-piece" alt="paper" id="paper" src="./assets/happy-paper.png">
+ </div>`
+}
+else if (game.draw && playersClickedPiece === 'scissors') {
+  allGamePiecesContainer.innerHTML += `
+  <div class="pieces-container">
+    <img class="game-piece" alt="scissors" id="scissors" src="./assets/happy-scissors.png">
+  </div>`
+}
+else if (game.draw && playersClickedPiece === 'lizard') {
+  allGamePiecesContainer.innerHTML += `
+  <div class="pieces-container">
+    <img class="game-piece"  alt="lizard" id="lizard" src="./assets/lizard.png">
+  </div>`
+}
+else if (game.draw && playersClickedPiece === 'alien') {
+  allGamePiecesContainer.innerHTML += `
+  <div class="pieces-container">
+    <img class="game-piece"  alt="alien" id="alien" src="./assets/happy-alien.png">
+  </div>`
+  }
+};
+  
 function showChosenPieces() {
   for (var i = 0; i < gamePieces.length; i++) {
     if (gamePieces[i].alt !== playersClickedPiece && gamePieces[i].alt !== computersChosenPiece) {
       gamePieces[i].classList.add('hidden')
     } 
-  } 
+  }   
 }
 
 function hideEmoji() {
