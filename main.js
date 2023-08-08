@@ -38,14 +38,12 @@ window.addEventListener('load', function() {
   renderPlayerData() //DOM
   hideGameOnPageLoad()
 });
-
 classicButton.addEventListener('click', function(event) {
   goToClassicGame(event);
   renderClassicGamePieces()
   createPlayerChosenPiece()
 
 });
-
 hardButton.addEventListener('click',function(event) {
   goToHardGame();
   renderHardGamePieces()
@@ -53,6 +51,7 @@ hardButton.addEventListener('click',function(event) {
 });
 changeGameButton.addEventListener('click', function() {
  goBackToHomePage()
+ returnGamePiecesClick()
 });
 
 allGamePiecesContainer.addEventListener('click', function(event) {
@@ -63,6 +62,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     createComputerchosenPiece()
     computerTakingItsTurn(game,['classicGameBoard'])
     showEmoji()
+    disableGamePieces()
    // showChosenPieces()
     // showEmoji()
     // setTimeout(showChosenPieces, 1000)
@@ -77,6 +77,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     createComputerchosenPiece()
     computerTakingItsTurn(game,['hardGameBoard'])
     showEmoji()
+    disableGamePieces()
     //showChosenPieces()
     
     // showEmoji()
@@ -177,12 +178,21 @@ function showEmoji() {
       document.querySelector('.alien').classList.remove('hidden');
     }
   }
-  
-  
 
-// function showEmoji() {
-
+// function disableGamePieces() {
+//   for (var i = 0; i < gamePieces.length; i++) {
+//     gamePieces[i].style.pointerEvents = 'none';
+//   }
 // }
+
+function disableGamePieces() {
+  allGamePiecesContainer.style.pointerEvents = 'none'
+}
+
+function returnGamePiecesClick() {
+
+  allGamePiecesContainer.style.pointerEvents = 'auto'
+}
 
 function makeGameFunctional(event, [gameArray]) {
   playerClicksPiece(event)
