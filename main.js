@@ -60,7 +60,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     setTimeout(showWhoWonTheRound, 1000)
     setTimeout(handleDrawState, 1000)
     setTimeout(resetClassicGame, 2500)
-    setTimeout(resetAfterDrawClasix, 2500)
+    setTimeout(resetAfterDrawClassic, 2500)
   } else {
     makeGameFunctional(event, ['hardGameBoard'])
     renderPlayerData()
@@ -70,6 +70,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     setTimeout(showWhoWonTheRound, 1000)
     setTimeout (handleDrawState, 1000)
     setTimeout(resetHardGame, 2500)
+    setTimeout(resetAfterDrawHard, 2500)
   } 
  });
 
@@ -454,7 +455,7 @@ function goBackToHomePage() {
 };
 
 
-function resetAfterDrawClasix() {
+function resetAfterDrawClassic() {
   if(game.draw) {
    console.log('testing 1')
     game.draw = false
@@ -475,4 +476,32 @@ function resetAfterDrawClasix() {
   }
   subtitle.innerText = 'Choose your figher!'
   console.log("testing 2")
+}
+
+function resetAfterDrawHard() {
+  if(game.draw) {
+    allGamePiecesContainer.innerHTML = '';
+    allGamePiecesContainer.innerHTML +=`
+    <div class="pieces-container">
+    <img class="game-piece" alt="rock" id="rock" src="./assets/happy-rocks.png">
+    <div class="emoji rock hidden" name="rock">🙂</div>
+  </div>
+  <div class="pieces-container">
+    <img class="game-piece" alt="paper" id="paper" src="./assets/happy-paper.png">
+    <div class="emoji paper hidden">🙂</div>
+  </div>
+  <div class="pieces-container">
+    <img class="game-piece" alt="scissors" id="scissors" src="./assets/happy-scissors.png">
+    <div class="emoji scissors hidden">🙂</div>
+  </div>
+  <div class="pieces-container">
+    <img class="game-piece"  alt="lizard" id="lizard" src="./assets/lizard.png">
+    <div class="emoji lizard hidden">🙂</div>
+  </div>
+  <div class="pieces-container">
+    <img class="game-piece"  alt="alien" id="alien" src="./assets/happy-alien.png">
+    <div class="emoji alien hidden">🙂</div>
+  </div>
+</div>`
+  }
 }
