@@ -53,7 +53,6 @@ changeGameButton.addEventListener('click', function() {
  goBackToHomePage()
  returnGamePiecesClick()
 });
-
 allGamePiecesContainer.addEventListener('click', function(event) {
   if (game.classicOrHard === 'classic') {
    // makeGameFunctional(event, ['classicGameBoard'])
@@ -65,7 +64,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     showEmoji()
     disableGamePieces()
     setTimeout(showChosenPieces, 1000)
-    setTimeout(renderPlayerData, 1000)
+    setTimeout(renderPlayerData, 1500)
    
 
     // showEmoji()
@@ -84,8 +83,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     showEmoji()
     disableGamePieces()
     setTimeout(showChosenPieces, 1000)
-    setTimeout(showChosenPieces, 1000)
-    renderPlayerData()
+    setTimeout(renderPlayerData, 1500)
     
     // showEmoji()
     // setTimeout(showChosenPieces, 1000)
@@ -299,7 +297,19 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
      game.player2.wonThisRound = false
      game.draw = true
    }
-   else if (playerPiece === 'scissors' && computerPiece === 'paper') {
+   else if (playerPiece === 'rock' &&  computerPiece === 'paper') {
+    game.player1.wins += 1
+    game.player1.wonThisRound = true
+    game.player2.wonThisRound = false
+    game.draw = false
+  }
+  else if (computerPiece === 'rock' && playerPiece === 'paper') {
+    game.player2.wonThisRound = false
+    game.player1.wonThisRound = false
+    game.draw = true
+  }
+
+  else if (playerPiece === 'scissors' && computerPiece === 'paper') {
      game.player1.wins += 1
      game.player1.wonThisRound = true
      game.player2.wonThisRound = false
@@ -493,7 +503,7 @@ function renderHardGamePieces() {
       <img class="game-piece" alt="scissors" id="scissors" src="${game.allGamePieces.scissors}">
       <div class="scissors hidden">${game.player1.token}</div>
   </div>
-  <div class="pieces-container scissors">
+  <div class="pieces-container">
      <img class="game-piece"  alt="lizard" id="lizard" src="${game.allGamePieces.lizard}">
      <div class="lizard hidden">${game.player1.token}</div>
   </div>
