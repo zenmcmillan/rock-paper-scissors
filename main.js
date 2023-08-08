@@ -64,7 +64,8 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     showEmoji()
     disableGamePieces()
     setTimeout(showChosenPieces, 1000)
-    setTimeout(renderPlayerData, 1500)
+    setTimeout(renderPlayerData, 2000)
+    setTimeout(renderClassicGamePieces, 2000)
    
 
     // showEmoji()
@@ -83,7 +84,9 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     showEmoji()
     disableGamePieces()
     setTimeout(showChosenPieces, 1000)
-    setTimeout(renderPlayerData, 1500)
+    setTimeout(renderPlayerData, 2000)
+    setTimeout(renderHardGamePieces, 2000)
+   
     
     // showEmoji()
     // setTimeout(showChosenPieces, 1000)
@@ -405,6 +408,18 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
+    game.draw = false
+  } 
+  else if (playerPiece === 'alien' && computerPiece === 'paper') {
+    game.player2.wins += 1
+    game.player2.wonThisRound = true
+    game.player1.wonThisRound = false
+    game.draw = false
+  }
+  else if (playerPiece === 'paper' &&computerPiece === 'alien') {
+    game.player1.wins += 1
+    game.player1.wonThisRound = true
+    game.player2.wonThisRound = false
     game.draw = false
   } 
   else if (playerPiece === 'rock' && computerPiece === 'lizard') {
