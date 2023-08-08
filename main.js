@@ -64,6 +64,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     showEmoji()
     disableGamePieces()
     setTimeout(showChosenPieces, 1000)
+    setTimeout(showWhoWonTheRound, 1000)
     setTimeout(renderPlayerData, 2000)
     setTimeout(renderClassicGamePieces, 2000)
    
@@ -84,6 +85,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     showEmoji()
     disableGamePieces()
     setTimeout(showChosenPieces, 1000)
+    setTimeout(showWhoWonTheRound, 1000)
     setTimeout(renderPlayerData, 2000)
     setTimeout(renderHardGamePieces, 2000)
    
@@ -504,6 +506,8 @@ function createGame() {
 
 function renderHardGamePieces() {
 
+  subtitle.innerText = 'Choose your fighter!'
+
   allGamePiecesContainer.innerHTML = ''
 
   allGamePiecesContainer.innerHTML += 
@@ -532,8 +536,7 @@ function renderHardGamePieces() {
 
 function renderClassicGamePieces() {
 
-
-  
+subtitle.innerText = 'Choose your fighter!'
   allGamePiecesContainer.innerHTML = ''
 
   allGamePiecesContainer.innerHTML += 
