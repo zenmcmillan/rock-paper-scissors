@@ -30,7 +30,6 @@
   width: 900px;
   background-color: #faf0e6;  
 }
-
 aside {
   display: flex;
   flex-direction: column;
@@ -52,17 +51,15 @@ aside {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  outline: 3px solid green;
+  /* outline: 3px solid green; */
 }
-
-
 .game-piece {
   display: flex;
   flex-direction: column;
   width: 160px;
   height: 160px;
   margin: 40px;
-  outline: 3px solid blue;
+  /* outline: 3px solid blue; */
 }
 
 .game-piece:hover {
@@ -75,11 +72,12 @@ aside {
   flex-direction: column;
   align-items: center;
   height: 280px; 
-  outline: 3px solid orange;
+  /* outline: 3px solid orange; */
 }
 
 
-.rock, .paper, .scissors, .alien, .lizard {
+.rock, .paper, .scissors, .lizard, .alien {
+ 
   font-size: 40px;
   margin-top: -20px;   
 }
