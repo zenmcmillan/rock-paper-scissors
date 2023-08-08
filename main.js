@@ -64,8 +64,8 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     plugInPieces()
     showEmoji()
     disableGamePieces()
- 
     setTimeout(showChosenPieces, 1000)
+    setTimeout(renderPlayerData, 1000)
    
 
     // showEmoji()
@@ -80,9 +80,12 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     playerClicksPiece(event)
     createComputerchosenPiece()
     computerTakingItsTurn(game,['hardGameBoard'])
+    plugInPieces()
     showEmoji()
     disableGamePieces()
     setTimeout(showChosenPieces, 1000)
+    setTimeout(showChosenPieces, 1000)
+    renderPlayerData()
     
     // showEmoji()
     // setTimeout(showChosenPieces, 1000)
