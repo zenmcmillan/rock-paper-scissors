@@ -7,9 +7,9 @@ var changeGameButton = document.querySelector('.change-game-button');
 var subtitle = document.querySelector('.subtitle');
 var personalGameInfo = document.querySelector('.personal-game-info');
 var computerGameInfo = document.querySelector('.computer-game-info');
-var classicGameBoardContainer = document.querySelector('.classic-gameboard-container');
-var classicGameBoard = document.querySelector('.classic-gameboard');
-var harderPiecesGameboardContainer = document.querySelector('.harder-pieces-gameboard');
+
+
+
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
 var emojis = document.querySelectorAll('.emoji')
 var computerGameInfo = document.querySelector('.computer-game-info');
@@ -34,8 +34,8 @@ var computersChosenPiece;
 // event listeners
 
 window.addEventListener('load', function() {
-  createGame() //data model
-  renderPlayerData() //DOM
+  createGame() 
+  renderPlayerData() 
   hideGameOnPageLoad()
 });
 classicButton.addEventListener('click', function(event) {
@@ -55,7 +55,6 @@ changeGameButton.addEventListener('click', function() {
 });
 allGamePiecesContainer.addEventListener('click', function(event) {
   if (game.classicOrHard === 'classic') {
-   // makeGameFunctional(event, ['classicGameBoard'])
     renderPlayerData()
     playerClicksPiece(event)
     createComputerchosenPiece()
@@ -68,14 +67,6 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     setTimeout(renderPlayerData, 2000)
     setTimeout(renderClassicGamePieces, 2000)
     setTimeout(returnGamePiecesClick, 2000)
-
-    // showEmoji()
-    // setTimeout(showChosenPieces, 1000)
-    // setTimeout(hideEmoji, 1000)
-    // setTimeout(showWhoWonTheRound, 1000)
-    // setTimeout(handleDrawState, 1000)
-    // setTimeout(resetClassicGame, 2500)
-    // setTimeout(resetAfterDrawClassic, 2500)
   } else {
     renderPlayerData()
     playerClicksPiece(event)
@@ -89,14 +80,6 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     setTimeout(renderPlayerData, 2000)
     setTimeout(renderHardGamePieces, 2000)
     setTimeout(returnGamePiecesClick, 2000)
-    
-    // showEmoji()
-    // setTimeout(showChosenPieces, 1000)
-    // setTimeout(hideEmoji, 1000)
-    // setTimeout(showWhoWonTheRound, 1000)
-    // setTimeout (handleDrawState, 1000)
-    // setTimeout(resetHardGame, 2500)
-    // setTimeout(resetAfterDrawHard, 2500)
   } 
  });
 
@@ -379,7 +362,18 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = true
   }
-  else if (playerPiece === 'alien' && computerPiece === 'scissors') {
+ else if (playerPiece === 'rock' && computerPiece === 'lizard') {
+    game.player1.wonThisRound = false
+    game.player2.wonThisRound = false
+    game.draw = true
+ }
+ else if (computerPiece === 'rock' && playerPiece === 'lizard') {
+  game.player2.wins += 1
+  game.player2.wonThisRound = true
+  game.player1.wonThisRound = false
+  game.draw = false
+ }
+ else if (playerPiece === 'alien' && computerPiece === 'scissors') {
     game.player1.wins += 1
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
