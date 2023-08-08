@@ -21,7 +21,7 @@ If you want to check it out on github the link is here: https://github.com/zenmc
 
 ## Preview of App:
 
-![Alt text](RPS-GIF.gif)
+![RPS-GIF](https://github.com/zenmcmillan/rock-paper-scissors/assets/121205752/de6c613b-6e82-4ef9-a054-4f5aa0b8beac)
 
 ## Context:
 
