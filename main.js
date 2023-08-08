@@ -61,9 +61,13 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     playerClicksPiece(event)
     createComputerchosenPiece()
     computerTakingItsTurn(game,['classicGameBoard'])
+    plugInPieces()
     showEmoji()
     disableGamePieces()
+ 
     setTimeout(showChosenPieces, 1000)
+   
+
     // showEmoji()
     // setTimeout(showChosenPieces, 1000)
     // setTimeout(hideEmoji, 1000)
@@ -187,11 +191,7 @@ function returnGamePiecesClick() {
   allGamePiecesContainer.style.pointerEvents = 'auto'
 }
 
-function makeGameFunctional(event, [gameArray]) {
-  playerClicksPiece(event)
-  computerTakingItsTurn(game, [gameArray])
-  createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
-}
+
 
 function showWhoWonTheRound() {
   if (game.player1.wonThisRound) {
@@ -258,168 +258,184 @@ function createPlayerChosenPiece() {
    return Math.floor(Math.random() * array.length)
  };
 
+//  function makeGameFunctional(event, [gameArray]) {
+//   playerClicksPiece(event)
+//   computerTakingItsTurn(game, [gameArray])
+//   createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
+// }
+
+// plugGameIn(playersClickedPiece, computersChosenPiece) {
+
+// }
+
+function plugInPieces() {
+ return createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
+}
+
+
+
 function createGameFunctionality(game, playerPiece, computerPiece) {
 
-    game.player1.chosenPiece = playerPiece
-    game.player2.chosenPiece = computerPiece
+    var playerPiece = playersClickedPiece.name
+   var  computerPiece = computersChosenPiece.name
   
-    if (game.player1.chosenPiece === 'rock' && game.player2.chosenPiece === 'scissors') { 
+    if (playerPiece === 'rock' && computerPiece === 'scissors') { 
     game.player1.wins += 1
     game.player1.wonThisRound = true 
     game.player2.wonThisRound = false
     game.draw = false
    }
-   else if (game.player2.chosenPiece === 'rock' && game.player1.chosenPiece === 'scissors') {
+   else if (playerPiece === 'rock' &&  computerPiece === 'scissors') {
      game.player2.wins += 1
      game.player2.wonThisRound = true
      game.player1.wonThisRound = false
      game.draw = false
    }
-   else if (game.player1.chosenPiece === 'rock' && game.player2.chosenPiece === 'rock') {
+   else if (playerPiece === 'rock' && computerPiece === 'rock') {
      game.player1.wonThisRound = false
      game.player2.wonThisRound = false
      game.draw = true
    }
-   else if (game.player1.chosenPiece === 'scissors' && game.player2.chosenPiece === 'paper') {
+   else if (playerPiece === 'scissors' && computerPiece === 'paper') {
      game.player1.wins += 1
      game.player1.wonThisRound = true
      game.player2.wonThisRound = false
      game.draw = false
    }
-   else if (game.player2.chosenPiece === 'scissors' && game.player1.chosenPiece === 'paper') {
+   else if (playerPiece === 'scissors' && computerPiece === 'paper') {
      game.player2.wins += 1
      game.player2.wonThisRound = true
      game.player1.wonThisRound = false
      game.draw = false
   }
-  else if (game.player1.chosenPiece === 'scissors' && game.player2.chosenPiece === 'lizard') {
+  else if (playerPiece === 'scissors' && computerPiece === 'lizard') {
     game.player1.wins += 1
      game.player1.wonThisRound = true
      game.player2.wonThisRound = false
      game.draw = false
   } 
-  else if (game.player2.chosenPiece === 'scissors' && game.player2.chosenPiece === 'lizard') {
+  else if (playerPiece === 'scissors' && computerPiece === 'lizard') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
     game.draw = false
  } 
-  else if (game.player1.chosenPiece === 'scissors' && game.player2.chosenPiece === 'scissors') {
+  else if (playerPiece === 'scissors' && computerPiece === 'scissors') {
     game.player1.wonThisRound = false
     game.player2.wonThisRound = false
     game.draw = true
   }
-  else if (game.player2.chosenPiece === 'lizard' && game.player2.chosenPiece === 'scissors') {
+  else if (playerPiece === 'lizard' && computerPiece === 'scissors') {
     game.player2.wonThisRound = false
     game.player1.wonThisRound = false
     game.draw = true
  }
-  else if (game.player1.chosenPiece === 'paper' && game.player2.chosenPiece === 'rock') {
+  else if (playerPiece === 'paper' && computerPiece === 'rock') {
      game.player1.wins += 1
      game.player1.wonThisRound = true
      game.player2.wonThisRound = false
      game.draw = false
    }
-   else if (game.player2.chosenPiece === 'paper' && game.player1.chosenPiece === 'rock') {
+   else if (playerPiece === 'paper' && computerPiece === 'rock') {
      game.player2.wins += 1
      game.player2.wonThisRound = true
      game.player1.wonThisRound = false
      game.draw = false
   }
-  else if (game.player1.chosenPiece === 'paper' && game.player2.chosenPiece === 'paper') {
+  else if (playerPiece === 'paper' && computerPiece === 'paper') {
     game.player1.wonThisRound = false
     game.player2.wonThisRound = false
     game.draw = true
   }
-  else if (game.player1.chosenPiece === 'lizard' && game.player2.chosenPiece === 'paper') {
+  else if (playerPiece === 'lizard' && computerPiece === 'paper') {
     game.player1.wins += 1
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
     game.draw = false
   }
-  else if (game.player2.chosenPiece === 'lizard' && game.player1.chosenPiece === 'paper') {
+  else if (playerPiece === 'lizard' && computerPiece === 'paper') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
     game.draw = false
   }
-  else if (game.player1.chosenPiece === 'lizard' && game.player2.chosenPiece === 'lizard') {
+  else if (playerPiece === 'lizard' && computerPiece === 'lizard') {
     game.player1.wonThisRound = false
     game.player2.wonThisRound = false
     game.draw = true
   }
-  else if (game.player1.chosenPiece === 'alien' && game.player2.chosenPiece === 'scissors') {
+  else if (playerPiece === 'alien' && computerPiece === 'scissors') {
     game.player1.wins += 1
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
     game.draw = false
   }
-  else if (game.player2.chosenPiece === 'alien' && game.player1.chosenPiece === 'scissors') {
+  else if (playerPiece === 'alien' &&computerPiece === 'scissors') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
     game.draw = false
   } 
 
-  else if (game.player1.chosenPiece === 'alien' && game.player2.chosenPiece === 'alien') {
+  else if (playerPiece === 'alien' && computerPiece === 'alien') {
     game.player1.wonThisRound = false
     game.player2.wonThisRound = false
     game.draw = true
   } 
-  else if (game.player1.chosenPiece === 'alien' && game.player2.chosenPiece === 'rock') {
+  else if (playerPiece === 'alien' && computerPiece === 'rock') {
     game.player1.wins += 1
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
     game.draw = false
   }  
-  else if (game.player2.chosenPiece === 'alien' && game.player1.chosenPiece === 'rock') {
+  else if (playerPiece === 'alien' && computerPiece === 'rock') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
     game.draw = false
   } 
-  else if (game.player1.chosenPiece === 'rock' && game.player2.chosenPiece === 'lizard') {
+  else if (playerPiece === 'rock' && computerPiece === 'lizard') {
     game.player1.wins += 1
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
     game.draw = false
-  } else if (game.player2.chosenPiece === 'rock' && game.player1.chosenPiece === 'lizard') {
+  } else if (playerPiece === 'rock' && computerPiece === 'lizard') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
     game.draw = false
   } 
-  else if (game.player1.chosenPiece === 'paper' && game.player2.chosenPiece === 'alien') {
+  else if (playerPiece === 'paper' && computerPiece === 'alien') {
     game.player1.wins += 1
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
     game.draw = false
   } 
-  else if (game.player2.chosenPiece === 'paper' && game.player1.chosenPiece === 'alien') {
-    game.player2.wins += 1
-    game.player2.wonThisRound = true
-    game.player1.wonThisRound = false
-    game.draw = false
-  }
-   else if (game.player1.chosenPiece === 'scissors' && game.player2.chosenPiece === 'lizard') {
-    game.player1.wins += 1
-    game.player1.wonThisRound = true
-    game.player2.wonThisRound = false
-    game.draw = false
-  } 
-  else if (game.player2.chosenPiece === 'scissors' && game.player1.chosenPiece === 'lizard') {
+  else if (playerPiece === 'paper' && computerPiece === 'alien') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
     game.draw = false
   }
-  else if (game.player1.chosenPiece === 'lizard' && game.player2.chosenPiece === 'alien') {
+   else if (playerPiece === 'scissors' && computerPiece === 'lizard') {
     game.player1.wins += 1
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
     game.draw = false
   } 
-  else if (game.player2.chosenPiece === 'lizard' && game.player1.chosenPiece === 'alien') {
+  else if (playerPiece === 'scissors' && computerPiece === 'lizard') {
+    game.player2.wins += 1
+    game.player2.wonThisRound = true
+    game.player1.wonThisRound = false
+    game.draw = false
+  }
+  else if (playerPiece === 'lizard' && computerPiece === 'alien') {
+    game.player1.wins += 1
+    game.player1.wonThisRound = true
+    game.player2.wonThisRound = false
+    game.draw = false
+  } 
+  else if (playerPiece === 'lizard' && computerPiece === 'alien') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
