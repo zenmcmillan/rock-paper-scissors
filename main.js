@@ -60,6 +60,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     setTimeout(showWhoWonTheRound, 1000)
     setTimeout(handleDrawState, 1000)
     setTimeout(resetClassicGame, 2500)
+    setTimeout(resetAfterDrawClasix, 2500)
   } else {
     makeGameFunctional(event, ['hardGameBoard'])
     renderPlayerData()
@@ -410,12 +411,15 @@ function goToClassicGame() {
 };
 
 function resetClassicGame() {
-  for (var i = 0; i < gamePieces.length; i++) {
+   if (!game.draw) {
+    for (var i = 0; i < gamePieces.length; i++) {
       gamePieces[0].classList.remove('hidden')
       gamePieces[1].classList.remove('hidden')
       gamePieces[2].classList.remove('hidden')
       subtitle.innerText = 'Choose your fighter!'
     }
+   }
+  
   }
 
 function goToHardGame() {
@@ -449,3 +453,26 @@ function goBackToHomePage() {
   subtitle.innerText = 'Choose your game!';
 };
 
+
+function resetAfterDrawClasix() {
+  if(game.draw) {
+   console.log('testing 1')
+    game.draw = false
+    allGamePiecesContainer.innerHTML = '';
+    allGamePiecesContainer.innerHTML += 
+    ` <div class="pieces-container">
+    <img class="game-piece" alt="rock" id="rock" src="./assets/happy-rocks.png">
+    <div class="emoji rock hidden" name="rock">🙂</div>
+  </div>
+  <div class="pieces-container">
+    <img class="game-piece" alt="paper" id="paper" src="./assets/happy-paper.png">
+    <div class="emoji paper hidden">🙂</div>
+  </div>
+  <div class="pieces-container">
+    <img class="game-piece" alt="scissors" id="scissors" src="./assets/happy-scissors.png">
+    <div class="emoji scissors hidden">🙂</div>
+  </div>`
+  }
+  subtitle.innerText = 'Choose your figher!'
+  console.log("testing 2")
+}
