@@ -63,7 +63,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     computerTakingItsTurn(game,['classicGameBoard'])
     showEmoji()
     disableGamePieces()
-   // showChosenPieces()
+    setTimeout(showChosenPieces, 1000)
     // showEmoji()
     // setTimeout(showChosenPieces, 1000)
     // setTimeout(hideEmoji, 1000)
@@ -78,7 +78,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     computerTakingItsTurn(game,['hardGameBoard'])
     showEmoji()
     disableGamePieces()
-    //showChosenPieces()
+    setTimeout(showChosenPieces, 1000)
     
     // showEmoji()
     // setTimeout(showChosenPieces, 1000)
@@ -136,23 +136,16 @@ else if (game.draw && playersClickedPiece === 'alien') {
 
 function showChosenPieces() {
 
-  allGamePiecesContainer.innerHTML = '';
+  allGamePiecesContainer.innerHTML = ''
+
+  allGamePiecesContainer.innerHTML += 
 
   `<div class="pieces-container">
-      <img class="game-piece rock "alt="rock" id="rock" src="${game.allGamePieces.rock}">
-  <div class="emoji rock-emoji hidden" data-name="rock">${game.player1.token}</div>
+      <img class="game-piece" src="${playersClickedPiece.image}">
   </div>
   <div class="pieces-container">
-      <img class="game-piece paper" alt="paper" id="paper" src="${game.allGamePieces.paper}">
-      <div class="emoji paper-emoji hidden" data-name="paper">${game.player1.token}</div>
-  </div>
-  <div class="pieces-container">
-      <img class="game-piece scissors" alt="scissors" id="scissors" src="${game.allGamePieces.scissors}">
-      <div class="emoji scissors-emoji hidden" data-name="scissors">${game.player1.token}</div>
+      <img class="game-piece" src="${computersChosenPiece.image}">
   </div>`
-
-
-
 }
 
 
