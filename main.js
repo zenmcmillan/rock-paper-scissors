@@ -67,7 +67,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     setTimeout(showWhoWonTheRound, 1000)
     setTimeout(renderPlayerData, 2000)
     setTimeout(renderClassicGamePieces, 2000)
-   
+    setTimeout(returnGamePiecesClick, 2000)
 
     // showEmoji()
     // setTimeout(showChosenPieces, 1000)
@@ -88,7 +88,7 @@ allGamePiecesContainer.addEventListener('click', function(event) {
     setTimeout(showWhoWonTheRound, 1000)
     setTimeout(renderPlayerData, 2000)
     setTimeout(renderHardGamePieces, 2000)
-   
+    setTimeout(returnGamePiecesClick, 2000)
     
     // showEmoji()
     // setTimeout(showChosenPieces, 1000)
@@ -191,6 +191,7 @@ function showEmoji() {
 function disableGamePieces() {
   allGamePiecesContainer.style.pointerEvents = 'none'
 }
+
 
 function returnGamePiecesClick() {
 
