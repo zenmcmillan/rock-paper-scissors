@@ -26,7 +26,8 @@ var allDivs = document.querySelectorAll('div')
 
 var game = {};
 var playersClickedPiece;
-var computersChosenPiece = 'rock';
+var computersChosenPiece;
+
 
 // event listeners
 
@@ -38,12 +39,13 @@ window.addEventListener('load', function() {
 
 classicButton.addEventListener('click', function(event) {
   goToClassicGame(event);
+  renderClassicGamePieces()
 
 });
 
 hardButton.addEventListener('click',function(event) {
   goToHardGame();
- 
+  renderHardGamePieces()
 });
 
 changeGameButton.addEventListener('click', function() {
@@ -54,6 +56,8 @@ allGamePiecesContainer.addEventListener('click', function(event) {
   if (game.classicOrHard === 'classic') {
     makeGameFunctional(event, ['classicGameBoard'])
     renderPlayerData()
+    
+   
     showEmoji()
     setTimeout(showChosenPieces, 1000)
     setTimeout(hideEmoji, 1000)
@@ -120,7 +124,7 @@ function showChosenPieces() {
 
 function hideEmoji() {
   for (var i = 0; i < emojis.length; i++) {
-    if (emojis[i].classList[1] === playersClickedPiece) {
+    if (emojis[i].name === playersClickedPiece) {
       emojis[i].classList.add('hidden')
     }
   }
@@ -376,19 +380,110 @@ function renderPlayerData() {
    <p class="player">${game.player2.name}</p>
    <p> Wins:<span> ${game.player2.wins}</span></p>`
 };
+function renderClassicGame() {
 
+  allGamePiecesContainer.innerHTML = '';
+
+  allGamePiecesContainer.innerHTML += 
+  `<div class="all-game-pieces-container">
+    <div class="pieces-container">
+    <img class="game-piece" alt="rock" id="rock" src="">
+  <div class="emoji rock hidden" name="rock">🙂</div>
+  </div>
+  <div class="pieces-container">
+    <img class="game-piece" alt="paper" id="paper" src="./assets/happy-paper.png">
+    <div class="emoji paper hidden">🙂</div>
+  </div>
+  <div class="pieces-container">
+    <img class="game-piece" alt="scissors" id="scissors" src="./assets/happy-paper.png">
+    <div class="emoji scissors hidden">🙂</div>
+  </div>`
+}
 
 function createGame() {
  var player1 = createPlayer('You', '🙂');
  var player2 = createPlayer('Computer', '💻');
+ var theGamePieces = createGamePiecesImages(`./assets/happy-rocks.png`, `./assets/happy-paper.png`, `./assets/happy-scissors.png`,`./assets/lizard.png`,`./assets/happy-alien.png`,)
  game = {player1, player2, classicGameBoard: ['rock', 'paper', 'scissors'], 
-  hardGameBoard: ['rock', 'paper', 'scissors', 'alien', 'lizard'], classicOrHard: null, draw: false}
+  hardGameBoard: ['rock', 'paper', 'scissors', 'alien', 'lizard'], classicOrHard: null, draw: false, allGamePieces: theGamePieces}
  console.log(game)
+
 }
+
+
+function renderHardGamePieces() {
+
+  allGamePiecesContainer.innerHTML = ''
+
+  allGamePiecesContainer.innerHTML += 
+  `<div class="pieces-container">
+      <img class="game-piece rock "alt="rock" src="${game.allGamePieces.rock}">
+  <div class="emoji rock-emoji hidden" name="rock">🙂</div>
+  </div>
+  <div class="pieces-container">
+      <img class="game-piece paper" alt="paper" id="paper" src="${game.allGamePieces.paper}">
+      <div class="emoji paper-emoji hidden">🙂</div>
+  </div>
+  <div class="pieces-container">
+      <img class="game-piece scissors" alt="scissors" id="scissors" src="${game.allGamePieces.scissors}">
+      <div class="emoji scissors-emoji hidden">🙂</div>
+  </div>
+  <div class="pieces-container scissors">
+     <img class="game-piece lizard"  alt="lizard" id="lizard" src="${game.allGamePieces.lizard}">
+     <div class="emoji lizard-emoji hidden">🙂</div>
+  </div>
+  <div class="pieces-container">
+      <img class="game-piece alien"  alt="alien" id="alien" src="${game.allGamePieces.alien}">
+      <div class="emoji alien-emoji hidden">🙂</div>
+</div>`
+}
+
+function renderClassicGamePieces() {
+
+  allGamePiecesContainer.innerHTML = ''
+
+  allGamePiecesContainer.innerHTML += 
+  `<div class="pieces-container">
+      <img class="game-piece rock "alt="rock" src="${game.allGamePieces.rock}">
+  <div class="emoji rock-emoji hidden" name="rock">🙂</div>
+  </div>
+  <div class="pieces-container">
+      <img class="game-piece paper" alt="paper" id="paper" src="${game.allGamePieces.paper}">
+      <div class="emoji paper-emoji hidden">🙂</div>
+  </div>
+  <div class="pieces-container">
+      <img class="game-piece scissors" alt="scissors" id="scissors" src="${game.allGamePieces.scissors}">
+      <div class="emoji scissors-emoji hidden">🙂</div>
+  </div>`
+}
+
+
+
+
+function createGamePiecesImages(rockImage, paperImage, scissorsImage, lizardImage, alienImage) {
+   var playingPieces = {
+    rock: rockImage, paper: paperImage, scissors: scissorsImage, lizard: lizardImage, alien: alienImage}
+    return playingPieces
+  }
+
+
+
+
+
+
+
+
+
+
 
 function createPlayer(personOrComputer, token) {
   return {name: personOrComputer, token: token,  wins: 0, wonThisRound: false, chosenPiece: 'piece'}
 };
+
+
+
+
+
 
 function hideGameOnPageLoad() {
   allGamePiecesContainer.classList.add('hidden')  
