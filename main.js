@@ -15,12 +15,14 @@ var emojis = document.querySelectorAll('.emoji')
 var computerGameInfo = document.querySelector('.computer-game-info');
 var piecesContainer = document.querySelectorAll('.pieces-container');
 var gamePieces = document.querySelectorAll('.game-piece');
+
 var rock = document.querySelector('.rock')
-var paper = document.querySelector('.paper')
-var scissors = document.querySelector('.scissors')
-var alien = document.querySelector('.alien')
-var lizard = document.querySelector('.lizard')
-var allDivs = document.querySelectorAll('div')
+var paper = document.querySelector('.paper');
+var scissors = document.querySelector('.scissors');
+var alien = document.querySelector('.emoji[data-name="alien"]');
+var lizard = document.querySelector('.emoji[data-name="lizard"]');
+var hidden = document.querySelector('.hidden')
+
 
 // global variables
 
@@ -40,41 +42,50 @@ window.addEventListener('load', function() {
 classicButton.addEventListener('click', function(event) {
   goToClassicGame(event);
   renderClassicGamePieces()
+  createPlayerChosenPiece()
 
 });
 
 hardButton.addEventListener('click',function(event) {
   goToHardGame();
   renderHardGamePieces()
+  createPlayerChosenPiece()
 });
-
 changeGameButton.addEventListener('click', function() {
  goBackToHomePage()
 });
 
 allGamePiecesContainer.addEventListener('click', function(event) {
   if (game.classicOrHard === 'classic') {
-    makeGameFunctional(event, ['classicGameBoard'])
+   // makeGameFunctional(event, ['classicGameBoard'])
     renderPlayerData()
-    
-   
+    playerClicksPiece(event)
+    createComputerchosenPiece()
+    computerTakingItsTurn(game,['classicGameBoard'])
     showEmoji()
-    setTimeout(showChosenPieces, 1000)
-    setTimeout(hideEmoji, 1000)
-    setTimeout(showWhoWonTheRound, 1000)
-    setTimeout(handleDrawState, 1000)
-    setTimeout(resetClassicGame, 2500)
-    setTimeout(resetAfterDrawClassic, 2500)
+   // showChosenPieces()
+    // showEmoji()
+    // setTimeout(showChosenPieces, 1000)
+    // setTimeout(hideEmoji, 1000)
+    // setTimeout(showWhoWonTheRound, 1000)
+    // setTimeout(handleDrawState, 1000)
+    // setTimeout(resetClassicGame, 2500)
+    // setTimeout(resetAfterDrawClassic, 2500)
   } else {
-    makeGameFunctional(event, ['hardGameBoard'])
     renderPlayerData()
+    playerClicksPiece(event)
+    createComputerchosenPiece()
+    computerTakingItsTurn(game,['hardGameBoard'])
     showEmoji()
-    setTimeout(showChosenPieces, 1000)
-    setTimeout(hideEmoji, 1000)
-    setTimeout(showWhoWonTheRound, 1000)
-    setTimeout (handleDrawState, 1000)
-    setTimeout(resetHardGame, 2500)
-    setTimeout(resetAfterDrawHard, 2500)
+    //showChosenPieces()
+    
+    // showEmoji()
+    // setTimeout(showChosenPieces, 1000)
+    // setTimeout(hideEmoji, 1000)
+    // setTimeout(showWhoWonTheRound, 1000)
+    // setTimeout (handleDrawState, 1000)
+    // setTimeout(resetHardGame, 2500)
+    // setTimeout(resetAfterDrawHard, 2500)
   } 
  });
 
@@ -114,13 +125,35 @@ else if (game.draw && playersClickedPiece === 'alien') {
   }
 };
   
+// function showChosenPieces() {
+//   for (var i = 0; i < gamePieces.length; i++) {
+//     if (gamePieces[i].alt !== playersClickedPiece && gamePieces[i].alt !== computersChosenPiece) {
+//       gamePieces[i].classList.add('hidden')
+//     } 
+//   }   
+// }
+
 function showChosenPieces() {
-  for (var i = 0; i < gamePieces.length; i++) {
-    if (gamePieces[i].alt !== playersClickedPiece && gamePieces[i].alt !== computersChosenPiece) {
-      gamePieces[i].classList.add('hidden')
-    } 
-  }   
+
+  allGamePiecesContainer.innerHTML = '';
+
+  `<div class="pieces-container">
+      <img class="game-piece rock "alt="rock" id="rock" src="${game.allGamePieces.rock}">
+  <div class="emoji rock-emoji hidden" data-name="rock">${game.player1.token}</div>
+  </div>
+  <div class="pieces-container">
+      <img class="game-piece paper" alt="paper" id="paper" src="${game.allGamePieces.paper}">
+      <div class="emoji paper-emoji hidden" data-name="paper">${game.player1.token}</div>
+  </div>
+  <div class="pieces-container">
+      <img class="game-piece scissors" alt="scissors" id="scissors" src="${game.allGamePieces.scissors}">
+      <div class="emoji scissors-emoji hidden" data-name="scissors">${game.player1.token}</div>
+  </div>`
+
+
+
 }
+
 
 function hideEmoji() {
   for (var i = 0; i < emojis.length; i++) {
@@ -131,22 +164,25 @@ function hideEmoji() {
 }
 
 function showEmoji() {
-  if (playersClickedPiece === 'rock') {
-    rock.classList.remove('hidden')
+  console.log('test') 
+    if (playersClickedPiece.name === 'rock') {
+      document.querySelector('.rock').classList.remove('hidden');
+    } else if (playersClickedPiece.name === 'paper') {
+      document.querySelector('.paper').classList.remove('hidden');
+    } else if (playersClickedPiece.name === 'scissors') {
+      document.querySelector('.scissors').classList.remove('hidden');
+    } else if (playersClickedPiece.name === 'lizard') {
+      document.querySelector('.lizard').classList.remove('hidden');
+    } else if (playersClickedPiece.name === 'alien') {
+      document.querySelector('.alien').classList.remove('hidden');
+    }
   }
-  else if (playersClickedPiece === 'paper') {
-    paper.classList.remove('hidden')
-  }
-  else if (playersClickedPiece === 'scissors') {
-    scissors.classList.remove('hidden')
-  }
-  else if (playersClickedPiece === 'lizard') {
-   lizard.classList.remove('hidden')
-  }
-  else if (playersClickedPiece === 'alien') {
-    alien.classList.remove('hidden')
-  }
-}
+  
+  
+
+// function showEmoji() {
+
+// }
 
 function makeGameFunctional(event, [gameArray]) {
   playerClicksPiece(event)
@@ -177,17 +213,43 @@ function updateComputerWins() {
 }
 
 function playerClicksPiece(event) {
-    playersClickedPiece = event.target.id
+    playersClickedPiece.name = event.target.id
+    playersClickedPiece.image = game.allGamePieces[playersClickedPiece.name]
    game.player1.chosenPiece = playersClickedPiece
-   return console.log("player:", playersClickedPiece)
+   console.log('players clicked piece name:', playersClickedPiece.name)
+   console.log('players clicked piece image:', playersClickedPiece.image)
+      return  playersClickedPiece
+
 };
 
 function computerTakingItsTurn(game, [array]) {
   var gameChoice = game[array]
-   computersChosenPiece = gameChoice[getRandomIndex(gameChoice)]
+   computersChosenPiece.name = gameChoice[getRandomIndex(gameChoice)]
+   computersChosenPiece.image = game.allGamePieces[computersChosenPiece.name]
   game.player2.chosenPiece = computersChosenPiece
+  console.log("computers chosen name", computersChosenPiece.name)
+  console.log("computers chosen image", computersChosenPiece.image)
   return console.log("computer:", game.player2.chosenPiece)
  };
+
+// function playerClicksPiece(event) {
+//   playersClickedPiece = event.target.id
+//   game['allGamePieces']
+//   if (clickedPieceId === 'rock') {
+
+//   }
+// }
+
+function createComputerchosenPiece() {
+  return computersChosenPiece = {name: null, image: null}
+}
+
+function createPlayerChosenPiece() {
+
+ return playersClickedPiece = {name: null, image: null}
+}
+
+
  
  function getRandomIndex(array) {
    return Math.floor(Math.random() * array.length)
@@ -380,34 +442,15 @@ function renderPlayerData() {
    <p class="player">${game.player2.name}</p>
    <p> Wins:<span> ${game.player2.wins}</span></p>`
 };
-function renderClassicGame() {
 
-  allGamePiecesContainer.innerHTML = '';
-
-  allGamePiecesContainer.innerHTML += 
-  `<div class="all-game-pieces-container">
-    <div class="pieces-container">
-    <img class="game-piece" alt="rock" id="rock" src="">
-  <div class="emoji rock hidden" name="rock">🙂</div>
-  </div>
-  <div class="pieces-container">
-    <img class="game-piece" alt="paper" id="paper" src="./assets/happy-paper.png">
-    <div class="emoji paper hidden">🙂</div>
-  </div>
-  <div class="pieces-container">
-    <img class="game-piece" alt="scissors" id="scissors" src="./assets/happy-paper.png">
-    <div class="emoji scissors hidden">🙂</div>
-  </div>`
-}
 
 function createGame() {
  var player1 = createPlayer('You', '🙂');
  var player2 = createPlayer('Computer', '💻');
  var theGamePieces = createGamePiecesImages(`./assets/happy-rocks.png`, `./assets/happy-paper.png`, `./assets/happy-scissors.png`,`./assets/lizard.png`,`./assets/happy-alien.png`,)
  game = {player1, player2, classicGameBoard: ['rock', 'paper', 'scissors'], 
-  hardGameBoard: ['rock', 'paper', 'scissors', 'alien', 'lizard'], classicOrHard: null, draw: false, allGamePieces: theGamePieces}
+  hardGameBoard: ['rock', 'paper', 'scissors', 'alien', 'lizard'], classicOrHard: null, draw: false, allGamePieces: theGamePieces, playerPieceToRender: null, computerPieceToRender: null}
  console.log(game)
-
 }
 
 
@@ -417,43 +460,46 @@ function renderHardGamePieces() {
 
   allGamePiecesContainer.innerHTML += 
   `<div class="pieces-container">
-      <img class="game-piece rock "alt="rock" src="${game.allGamePieces.rock}">
-  <div class="emoji rock-emoji hidden" name="rock">🙂</div>
+      <img class="game-piece" alt="rock" id="rock" src="${game.allGamePieces.rock}">
+  <div class="rock hidden">${game.player1.token}</div>
   </div>
   <div class="pieces-container">
-      <img class="game-piece paper" alt="paper" id="paper" src="${game.allGamePieces.paper}">
-      <div class="emoji paper-emoji hidden">🙂</div>
+      <img class="game-piece" alt="paper" id="paper" src="${game.allGamePieces.paper}">
+      <div class="paper hidden">${game.player1.token}</div>
   </div>
   <div class="pieces-container">
-      <img class="game-piece scissors" alt="scissors" id="scissors" src="${game.allGamePieces.scissors}">
-      <div class="emoji scissors-emoji hidden">🙂</div>
+      <img class="game-piece" alt="scissors" id="scissors" src="${game.allGamePieces.scissors}">
+      <div class="scissors hidden">${game.player1.token}</div>
   </div>
   <div class="pieces-container scissors">
-     <img class="game-piece lizard"  alt="lizard" id="lizard" src="${game.allGamePieces.lizard}">
-     <div class="emoji lizard-emoji hidden">🙂</div>
+     <img class="game-piece"  alt="lizard" id="lizard" src="${game.allGamePieces.lizard}">
+     <div class="lizard hidden">${game.player1.token}</div>
   </div>
   <div class="pieces-container">
-      <img class="game-piece alien"  alt="alien" id="alien" src="${game.allGamePieces.alien}">
-      <div class="emoji alien-emoji hidden">🙂</div>
+      <img class="game-piece" alt="alien" id="alien" src="${game.allGamePieces.alien}">
+      <div class="alien hidden">${game.player1.token}</div>
 </div>`
 }
 
+
 function renderClassicGamePieces() {
 
+
+  
   allGamePiecesContainer.innerHTML = ''
 
   allGamePiecesContainer.innerHTML += 
   `<div class="pieces-container">
-      <img class="game-piece rock "alt="rock" src="${game.allGamePieces.rock}">
-  <div class="emoji rock-emoji hidden" name="rock">🙂</div>
+      <img class="game-piece" alt="rock" id="rock" src="${game.allGamePieces.rock}">
+  <div class="rock hidden">${game.player1.token}</div>
   </div>
   <div class="pieces-container">
-      <img class="game-piece paper" alt="paper" id="paper" src="${game.allGamePieces.paper}">
-      <div class="emoji paper-emoji hidden">🙂</div>
+      <img class="game-piece" alt="paper" id="paper" src="${game.allGamePieces.paper}">
+      <div class="paper hidden">${game.player1.token}</div>
   </div>
   <div class="pieces-container">
-      <img class="game-piece scissors" alt="scissors" id="scissors" src="${game.allGamePieces.scissors}">
-      <div class="emoji scissors-emoji hidden">🙂</div>
+      <img class="game-piece" alt="scissors" id="scissors" src="${game.allGamePieces.scissors}">
+      <div class="scissors hidden">${game.player1.token}</div>
   </div>`
 }
 
@@ -541,7 +587,6 @@ function resetHardGame() {
   }
  }
 }
-
 function goBackToHomePage() {
   classicAndHardContainers.classList.remove('hidden');
   changeGameButton.classList.add('hidden');
@@ -557,12 +602,12 @@ function resetAfterDrawClassic() {
     allGamePiecesContainer.innerHTML = '';
     allGamePiecesContainer.innerHTML += 
     ` <div class="pieces-container">
-    <img class="game-piece" alt="rock" id="rock" src="./assets/happy-rocks.png">
-    <div class="emoji rock hidden" name="rock">🙂</div>
-  </div>
+       <img class="game-piece" alt="rock" id="rock" src="./assets/happy-rocks.png">
+      <div class="emoji rock hidden" name="rock">🙂</div>
+   </div>
   <div class="pieces-container">
     <img class="game-piece" alt="paper" id="paper" src="./assets/happy-paper.png">
-    <div class="emoji paper hidden">🙂</div>
+    <div class=" paper hidden">🙂</div>
   </div>
   <div class="pieces-container">
     <img class="game-piece" alt="scissors" id="scissors" src="./assets/happy-scissors.png">
