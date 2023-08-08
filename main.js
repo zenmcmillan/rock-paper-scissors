@@ -289,7 +289,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = false
    }
-   else if (playerPiece === 'rock' &&  computerPiece === 'scissors') {
+   else if (computerPiece === 'rock' &&  playerPiece === 'scissors') {
      game.player2.wins += 1
      game.player2.wonThisRound = true
      game.player1.wonThisRound = false
@@ -307,9 +307,10 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.draw = false
   }
   else if (computerPiece === 'rock' && playerPiece === 'paper') {
+    game.player2.wins += 1
     game.player2.wonThisRound = false
     game.player1.wonThisRound = false
-    game.draw = true
+    game.draw = false
   }
 
   else if (playerPiece === 'scissors' && computerPiece === 'paper') {
@@ -318,7 +319,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
      game.player2.wonThisRound = false
      game.draw = false
    }
-   else if (playerPiece === 'scissors' && computerPiece === 'paper') {
+   else if (computerPiece === 'scissors' && playerPiece === 'paper') {
      game.player2.wins += 1
      game.player2.wonThisRound = true
      game.player1.wonThisRound = false
@@ -330,7 +331,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
      game.player2.wonThisRound = false
      game.draw = false
   } 
-  else if (playerPiece === 'scissors' && computerPiece === 'lizard') {
+  else if (computerPiece === 'scissors' && playerPiece === 'lizard') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
@@ -341,18 +342,13 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = true
   }
-  else if (playerPiece === 'lizard' && computerPiece === 'scissors') {
-    game.player2.wonThisRound = false
-    game.player1.wonThisRound = false
-    game.draw = true
- }
   else if (playerPiece === 'paper' && computerPiece === 'rock') {
      game.player1.wins += 1
      game.player1.wonThisRound = true
      game.player2.wonThisRound = false
      game.draw = false
    }
-   else if (playerPiece === 'paper' && computerPiece === 'rock') {
+   else if (computerPiece === 'paper' && playerPiece === 'rock') {
      game.player2.wins += 1
      game.player2.wonThisRound = true
      game.player1.wonThisRound = false
@@ -369,7 +365,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = false
   }
-  else if (playerPiece === 'lizard' && computerPiece === 'paper') {
+  else if (computerPiece === 'lizard' && playerPiece === 'paper') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
@@ -386,7 +382,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = false
   }
-  else if (playerPiece === 'alien' &&computerPiece === 'scissors') {
+  else if (computerPiece === 'alien' && playerPiece === 'scissors') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
@@ -404,7 +400,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = false
   }  
-  else if (playerPiece === 'alien' && computerPiece === 'rock') {
+  else if (computerPiece === 'alien' && playerPiece === 'rock') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
@@ -463,12 +459,17 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = false
   } 
-  else if (playerPiece === 'lizard' && computerPiece === 'alien') {
+  else if (computerPiece === 'lizard' && playerPiece === 'alien') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
     game.draw = false
   } 
+  else if (playerPiece === 'lizard' && computerPiece === 'lizard'){
+    game.player1.wonThisRound = false
+    game.player2.wonThisRound = false
+    game.draw = true  
+  }
   console.log(game.player1);
   console.log(game.player2);
 };
