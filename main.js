@@ -7,10 +7,8 @@ var changeGameButton = document.querySelector('.change-game-button');
 var subtitle = document.querySelector('.subtitle');
 var personalGameInfo = document.querySelector('.personal-game-info');
 var computerGameInfo = document.querySelector('.computer-game-info');
-
-
-
 var allGamePiecesContainer = document.querySelector('.all-game-pieces-container');
+
 var emojis = document.querySelectorAll('.emoji')
 var computerGameInfo = document.querySelector('.computer-game-info');
 var piecesContainer = document.querySelectorAll('.pieces-container');
@@ -38,13 +36,13 @@ window.addEventListener('load', function() {
   renderPlayerData() 
   hideGameOnPageLoad()
 });
-classicButton.addEventListener('click', function(event) {
-  goToClassicGame(event);
+classicButton.addEventListener('click', function() {
+  goToClassicGame();
   renderClassicGamePieces()
   createPlayerChosenPiece()
 
 });
-hardButton.addEventListener('click',function(event) {
+hardButton.addEventListener('click',function() {
   goToHardGame();
   renderHardGamePieces()
   createPlayerChosenPiece()
@@ -118,14 +116,7 @@ else if (game.draw && playersClickedPiece === 'alien') {
   </div>`
   }
 };
-  
-// function showChosenPieces() {
-//   for (var i = 0; i < gamePieces.length; i++) {
-//     if (gamePieces[i].alt !== playersClickedPiece && gamePieces[i].alt !== computersChosenPiece) {
-//       gamePieces[i].classList.add('hidden')
-//     } 
-//   }   
-// }
+ 
 
 function showChosenPieces() {
 
@@ -142,14 +133,6 @@ function showChosenPieces() {
 }
 
 
-function hideEmoji() {
-  for (var i = 0; i < emojis.length; i++) {
-    if (emojis[i].name === playersClickedPiece) {
-      emojis[i].classList.add('hidden')
-    }
-  }
-}
-
 function showEmoji() {
   console.log('test') 
     if (playersClickedPiece.name === 'rock') {
@@ -164,12 +147,6 @@ function showEmoji() {
       document.querySelector('.alien').classList.remove('hidden');
     }
   }
-
-// function disableGamePieces() {
-//   for (var i = 0; i < gamePieces.length; i++) {
-//     gamePieces[i].style.pointerEvents = 'none';
-//   }
-// }
 
 function disableGamePieces() {
   allGamePiecesContainer.style.pointerEvents = 'none'
@@ -225,13 +202,6 @@ function computerTakingItsTurn(game, [array]) {
   return console.log("computer:", game.player2.chosenPiece)
  };
 
-// function playerClicksPiece(event) {
-//   playersClickedPiece = event.target.id
-//   game['allGamePieces']
-//   if (clickedPieceId === 'rock') {
-
-//   }
-// }
 
 function createComputerchosenPiece() {
   return computersChosenPiece = {name: null, image: null}
@@ -248,20 +218,10 @@ function createPlayerChosenPiece() {
    return Math.floor(Math.random() * array.length)
  };
 
-//  function makeGameFunctional(event, [gameArray]) {
-//   playerClicksPiece(event)
-//   computerTakingItsTurn(game, [gameArray])
-//   createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
-// }
-
-// plugGameIn(playersClickedPiece, computersChosenPiece) {
-
-// }
 
 function plugInPieces() {
  return createGameFunctionality(game, playersClickedPiece, computersChosenPiece)
 }
-
 
 
 function createGameFunctionality(game, playerPiece, computerPiece) {
@@ -286,19 +246,18 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
      game.player2.wonThisRound = false
      game.draw = true
    }
-   else if (playerPiece === 'rock' &&  computerPiece === 'paper') {
+   else if (playerPiece === 'paper' &&  computerPiece === 'rock') {
     game.player1.wins += 1
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
     game.draw = false
   }
-  else if (computerPiece === 'rock' && playerPiece === 'paper') {
+  else if (computerPiece === 'paper' && playerPiece === 'rock') {
     game.player2.wins += 1
-    game.player2.wonThisRound = false
+    game.player2.wonThisRound = true
     game.player1.wonThisRound = false
     game.draw = false
   }
-
   else if (playerPiece === 'scissors' && computerPiece === 'paper') {
      game.player1.wins += 1
      game.player1.wonThisRound = true
@@ -328,18 +287,6 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = true
   }
-  else if (playerPiece === 'paper' && computerPiece === 'rock') {
-     game.player1.wins += 1
-     game.player1.wonThisRound = true
-     game.player2.wonThisRound = false
-     game.draw = false
-   }
-   else if (computerPiece === 'paper' && playerPiece === 'rock') {
-     game.player2.wins += 1
-     game.player2.wonThisRound = true
-     game.player1.wonThisRound = false
-     game.draw = false
-  }
   else if (playerPiece === 'paper' && computerPiece === 'paper') {
     game.player1.wonThisRound = false
     game.player2.wonThisRound = false
@@ -362,17 +309,6 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = true
   }
- else if (playerPiece === 'rock' && computerPiece === 'lizard') {
-    game.player1.wonThisRound = false
-    game.player2.wonThisRound = false
-    game.draw = true
- }
- else if (computerPiece === 'rock' && playerPiece === 'lizard') {
-  game.player2.wins += 1
-  game.player2.wonThisRound = true
-  game.player1.wonThisRound = false
-  game.draw = false
- }
  else if (playerPiece === 'alien' && computerPiece === 'scissors') {
     game.player1.wins += 1
     game.player1.wonThisRound = true
@@ -420,7 +356,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player1.wonThisRound = true
     game.player2.wonThisRound = false
     game.draw = false
-  } else if (playerPiece === 'rock' && computerPiece === 'lizard') {
+  } else if (computerPiece === 'rock' && playerPiece === 'lizard') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
@@ -444,7 +380,7 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player2.wonThisRound = false
     game.draw = false
   } 
-  else if (playerPiece === 'scissors' && computerPiece === 'lizard') {
+  else if (computerPiece === 'scissors' && playerPiece === 'lizard') {
     game.player2.wins += 1
     game.player2.wonThisRound = true
     game.player1.wonThisRound = false
@@ -462,11 +398,6 @@ function createGameFunctionality(game, playerPiece, computerPiece) {
     game.player1.wonThisRound = false
     game.draw = false
   } 
-  else if (playerPiece === 'lizard' && computerPiece === 'lizard'){
-    game.player1.wonThisRound = false
-    game.player2.wonThisRound = false
-    game.draw = true  
-  }
   console.log(game.player1);
   console.log(game.player2);
 };
@@ -558,23 +489,9 @@ function createGamePiecesImages(rockImage, paperImage, scissorsImage, lizardImag
     return playingPieces
   }
 
-
-
-
-
-
-
-
-
-
-
 function createPlayer(personOrComputer, token) {
   return {name: personOrComputer, token: token,  wins: 0, wonThisRound: false, chosenPiece: 'piece'}
 };
-
-
-
-
 
 
 function hideGameOnPageLoad() {
@@ -641,53 +558,3 @@ function goBackToHomePage() {
 };
 
 
-function resetAfterDrawClassic() {
-  if(game.draw) {
-   console.log('testing 1')
-    game.draw = false
-    allGamePiecesContainer.innerHTML = '';
-    allGamePiecesContainer.innerHTML += 
-    ` <div class="pieces-container">
-       <img class="game-piece" alt="rock" id="rock" src="./assets/happy-rocks.png">
-      <div class="emoji rock hidden" name="rock">🙂</div>
-   </div>
-  <div class="pieces-container">
-    <img class="game-piece" alt="paper" id="paper" src="./assets/happy-paper.png">
-    <div class=" paper hidden">🙂</div>
-  </div>
-  <div class="pieces-container">
-    <img class="game-piece" alt="scissors" id="scissors" src="./assets/happy-scissors.png">
-    <div class="emoji scissors hidden">🙂</div>
-  </div>`
-  }
-  subtitle.innerText = 'Choose your figher!'
-  console.log("testing 2")
-}
-
-function resetAfterDrawHard() {
-  if(game.draw) {
-    allGamePiecesContainer.innerHTML = '';
-    allGamePiecesContainer.innerHTML +=`
-    <div class="pieces-container">
-    <img class="game-piece" alt="rock" id="rock" src="./assets/happy-rocks.png">
-    <div class="emoji rock hidden" name="rock">🙂</div>
-  </div>
-  <div class="pieces-container">
-    <img class="game-piece" alt="paper" id="paper" src="./assets/happy-paper.png">
-    <div class="emoji paper hidden">🙂</div>
-  </div>
-  <div class="pieces-container">
-    <img class="game-piece" alt="scissors" id="scissors" src="./assets/happy-scissors.png">
-    <div class="emoji scissors hidden">🙂</div>
-  </div>
-  <div class="pieces-container">
-    <img class="game-piece"  alt="lizard" id="lizard" src="./assets/lizard.png">
-    <div class="emoji lizard hidden">🙂</div>
-  </div>
-  <div class="pieces-container">
-    <img class="game-piece"  alt="alien" id="alien" src="./assets/happy-alien.png">
-    <div class="emoji alien hidden">🙂</div>
-  </div>
-</div>`
-  }
-}
