@@ -4,6 +4,10 @@
 
 The user is first taken to a page where they can click the Classic or Hard Buttons respectively to pick they game they want to play. The rules for the game are in the box with the classic or Hard buttons. When an icon is clicked the players emoji will show up underneath their clicked piece.   After a few seconds the emoji as well as the other icons will disappear besides the users clicked piece and the computers randomly generated piece. The winner will be announced above the game. The game resets and the wins on tracked on each side of the screen for the user and computer.
 
+### Application link:
+
+<https://zenmcmillan.github.io/rock-paper-scissors/>
+
 ## Installation Instructions:
 
 ### For MacBook Users
